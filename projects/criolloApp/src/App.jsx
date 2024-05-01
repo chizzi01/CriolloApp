@@ -1,6 +1,4 @@
 import './App.css'
-import { Avatar } from './components/Avatar'
-import { CustomizedProgressBars } from './components/ProgressBar'
 import { DrawerAppBar } from './components/Navbar'
 import { useState, useEffect } from 'react'
 import { useRef } from 'react'
@@ -52,7 +50,7 @@ export function App() {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100,200,300,400,500,600,700,800&display=swap');
       </style>
-      <DrawerAppBar currentSection={seccionActual} />
+      <DrawerAppBar/>
       
           </div>
 
