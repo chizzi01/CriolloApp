@@ -1,0 +1,20 @@
+{
+  "name": "criollo-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chizzi01/CriolloApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chizzi01/CriolloApp/issues"
+  },
+  "homepage": "https://github.com/chizzi01/CriolloApp#readme"
+}
