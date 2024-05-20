@@ -11,51 +11,63 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import { ControlledSwitches } from './Switch'
+import '../../src/App.css'
+import logo from '../assets/CRIOLL.png'
+import avatarUrl from '../assets/avatar.jpg'
 
 
 const drawerWidth = 240;
 // const navItems = ['<Experiencia />', '<DevTools />', '<Portfolio />', '<Contacto />', <ControlledSwitches />];
 
-const IniText = localStorage.getItem('language') === 'es' ? '<Inicio />' : '<Home />'  // Define el texto de la sección de Inicio
-const ExpText = localStorage.getItem('language') === 'es' ? '<Experiencia />' : '<Experience />' // Define el texto de la sección de Experiencia
-const DevText = localStorage.getItem('language') === 'es' ? '<DevTools />' : '<DevTools />' // Define el texto de la sección de DevTools
-const PortText = localStorage.getItem('language') === 'es' ? '<Portfolio />' : '<Portfolio />' // Define el texto de la sección de Portfolio
-const ContText = localStorage.getItem('language') === 'es' ? '<Contacto />' : '<Contact />'
+const IniText = 'Tutoriales v'   // Define el texto de la sección de Inicio
+const ExpText = 'Practicas'  // Define el texto de la sección de Experiencia
+const DevText = 'Novedades'  // Define el texto de la sección de DevTools
+const PortText = 'Comunidad'  // Define el texto de la sección de Portfolio
+const username = 'User'
+
 
 
 
 // Define el resto de los textos de la misma manera
 
 
-export function DrawerAppBar({window, currentSection}) {
+export function DrawerAppBar({ window, currentSection }) {
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   console.log(currentSection)
- 
+
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const toggleLanguage = () => {
-    localStorage.setItem('language') === 'es' ? localStorage.setItem('language', 'en') : localStorage.setItem('language', 'es')
-    window.location.reload()
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', background: 'linear-gradient(90deg, #0F0F0F 0.02%, rgba(0, 71, 255, 0.51) 99.99%)' }}>
       <Typography variant="h6" sx={{ my: 2, color: '#FFF' }}>
         ACM
       </Typography>
-      <Divider  />
+      <Divider />
       <List className="navTextsHamburguer">
-        <a href="#avatar-section">{IniText}</a>
-        <a href="#experiencia-section">{ExpText}</a>
-        <a href="#devtools-section">{DevText}</a>
-        <a href="#portfolio-section">{PortText}</a>
-        <a style={{backgroundColor:"#6C8DFF"}} href="#contacto-section">{ContText}</a>
+        <a href="#tutoriales-section">{IniText}</a>
+        <a href="#practicas-section">{ExpText}</a>
+        <a href="#novedades-section">{DevText}</a>
+        <a href="#comunidad-section">{PortText}</a>
       </List>
       {/* <Button><ControlledSwitches onSwitch={toggleLanguage} /></Button> */}
     </Box>
@@ -73,11 +85,11 @@ export function DrawerAppBar({window, currentSection}) {
       <CssBaseline />
       <AppBar component="nav"
         sx={{
-          background: 'linear-gradient(90deg, #0F0F0F 0.02%, rgba(0, 71, 255, 0.51) 99.99%)'
+          background: 'linear-gradient(90deg, rgba(255,255,255,1) 30%, rgba(71,216,48,0.113676470588235) 50%, rgba(255,255,255,1) 66%);'
         }}>
         <Toolbar>
           <IconButton
-            color="inherit"
+            color="#077647"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -85,23 +97,39 @@ export function DrawerAppBar({window, currentSection}) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            ACM
-          </Typography>
-          <Box className="navTexts" sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <Button><a className={currentSection === 'avatar-section' ? 'active' : ''} href="#avatar-section" >{IniText}</a></Button>
-          <Button><a className={currentSection === 'experiencia-section' ? 'active' : ''} href="#experiencia-section" >{ExpText}</a></Button>
-          <Button><a className={currentSection === 'devtools-section' ? 'active' : ''} href="#devtools-section" >{DevText}</a></Button>
-          <Button><a className={currentSection === 'proyectos-section' ? 'active' : ''} href="#proyectos-section" >{PortText}</a></Button>
-          <Button><a className={currentSection === 'contacto-section' ? 'active' : ''} style={{backgroundColor:"rgb(108 141 255 / 47%)", borderRadius:"12px"}} href="#contacto-section" >{ContText}</a></Button>
-          {/* <Button><ControlledSwitches onSwitch={toggleLanguage}/></Button> */}
-
+          <img src={logo} alt="Logo" style={{ width: '4rem', height: '4rem', padding: '5px' }} />
+          <Box className="navTexts" sx={{
+            flexGrow: 1,
+            display: { xs: 'none', sm: 'block' },
+            button: {
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
+            },
+          }}>
+            <Button disableRipple onClick={handleClick}><a className={currentSection === 'tutoriales-section' ? 'active' : ''} href="#avatar-section" >{IniText}</a></Button>
+            <Button disableRipple><a className={currentSection === 'practicas-section' ? 'active' : ''} href="#experiencia-section" >{ExpText}</a></Button>
+            <Button disableRipple><a className={currentSection === 'novedades-section' ? 'active' : ''} href="#devtools-section" >{DevText}</a></Button>
+            <Button disableRipple><a className={currentSection === 'comunidad-section' ? 'active' : ''} href="#proyectos-section" >{PortText}</a></Button>
+          </Box>
+          <Box sx={{ display: { xs: 'none', md: 'flex', padding: 5 } }}>
+            <div className="user-badge">
+              <img src={avatarUrl} alt="User Avatar" className="avatar" />
+              <span className="username">{username}</span>
+            </div>
           </Box>
         </Toolbar>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>Tutorial 1</MenuItem>
+          <MenuItem onClick={handleClose}>Tutorial 2</MenuItem>
+          <MenuItem onClick={handleClose}>Tutorial 3</MenuItem>
+        </Menu>
       </AppBar>
       <nav>
         <Drawer
@@ -114,8 +142,8 @@ export function DrawerAppBar({window, currentSection}) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { 
-              boxSizing: 'border-box', 
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
               width: drawerWidth,
               backgroundColor: 'transparent',
               height: '100%',
