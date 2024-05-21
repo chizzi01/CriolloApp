@@ -13,7 +13,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+
+
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Popover from '@mui/material/Popover';
 import { ControlledSwitches } from './Switch'
 import '../../src/App.css'
 import logo from '../assets/CRIOLL.png'
@@ -23,7 +28,7 @@ import avatarUrl from '../assets/avatar.jpg'
 const drawerWidth = 240;
 // const navItems = ['<Experiencia />', '<DevTools />', '<Portfolio />', '<Contacto />', <ControlledSwitches />];
 
-const IniText = 'Tutoriales v'   // Define el texto de la sección de Inicio
+const IniText = 'Tutoriales'   // Define el texto de la sección de Inicio
 const ExpText = 'Practicas'  // Define el texto de la sección de Experiencia
 const DevText = 'Novedades'  // Define el texto de la sección de DevTools
 const PortText = 'Comunidad'  // Define el texto de la sección de Portfolio
@@ -39,20 +44,22 @@ export function DrawerAppBar({ window, currentSection }) {
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  console.log(currentSection)
+  // console.log(currentSection)
 
-
+  const [isHovered, setIsHovered] = React.useState(false);
+  // console.log(isHovered)
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClick = (event) => {
+  const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handlePopoverClose = () => {
     setAnchorEl(null);
   };
 
@@ -60,7 +67,7 @@ export function DrawerAppBar({ window, currentSection }) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', background: 'linear-gradient(90deg, #0F0F0F 0.02%, rgba(0, 71, 255, 0.51) 99.99%)' }}>
       <Typography variant="h6" sx={{ my: 2, color: '#FFF' }}>
-        ACM
+        CRIOLLO
       </Typography>
       <Divider />
       <List className="navTextsHamburguer">
@@ -107,7 +114,16 @@ export function DrawerAppBar({ window, currentSection }) {
               },
             },
           }}>
-            <Button disableRipple onClick={handleClick}><a className={currentSection === 'tutoriales-section' ? 'active' : ''} href="#avatar-section" >{IniText}</a></Button>
+            <Button
+              disableRipple
+              onMouseEnter={(event) => { handlePopoverOpen(event); }}
+            ><a className={currentSection === 'tutoriales-section' ? 'active' : ''} href="#avatar-section" >{IniText}</a>  <ExpandMoreIcon
+                style={{
+                  color: '#077647',
+                  transform: anchorEl ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.3s ease-in-out'
+                }}
+              /></Button>
             <Button disableRipple><a className={currentSection === 'practicas-section' ? 'active' : ''} href="#experiencia-section" >{ExpText}</a></Button>
             <Button disableRipple><a className={currentSection === 'novedades-section' ? 'active' : ''} href="#devtools-section" >{DevText}</a></Button>
             <Button disableRipple><a className={currentSection === 'comunidad-section' ? 'active' : ''} href="#proyectos-section" >{PortText}</a></Button>
@@ -119,17 +135,71 @@ export function DrawerAppBar({ window, currentSection }) {
             </div>
           </Box>
         </Toolbar>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
+        <Popover
+          id="mouse-over-popover"
           open={Boolean(anchorEl)}
-          onClose={handleClose}
+          anchorEl={anchorEl}
+          onClose={handlePopoverClose}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'left',
+          }}
+          PaperProps={{
+            onMouseLeave: handlePopoverClose,
+            className: 'popover-content', // Aplica la clase CSS
+          }}
         >
-          <MenuItem onClick={handleClose}>Tutorial 1</MenuItem>
-          <MenuItem onClick={handleClose}>Tutorial 2</MenuItem>
-          <MenuItem onClick={handleClose}>Tutorial 3</MenuItem>
-        </Menu>
+          <List>
+            {[
+              {
+                primary: 'Introducción a las Finanzas',
+                secondary: 'Descubre el camino hacia la libertad financiera',
+              },
+              {
+                primary: 'Conceptos Básicos',
+                secondary: 'Aprende conceptos básicos de finanzas y economía',
+              },
+              {
+                primary: 'Conceptos Avanzados',
+                secondary: 'Aprende conceptos avanzados de finanzas y economía',
+              },
+              {
+                primary: 'Ahorros',
+                secondary: 'Descubre cómo empezar a ahorrar de manera efectiva',
+              },
+              {
+                primary: 'Inversiones',
+                secondary: 'Explora oportunidades de inversión y aprende a hacer crecer tu dinero',
+              },
+            ].map((item, index) => (
+              <ListItem key={index} className="list-item">
+                {/* Aplica la clase CSS */}
+                <ListItemText
+                  primary={item.primary}
+                  secondary={item.secondary}
+                  primaryTypographyProps={{ className: 'primary-text' }} // Aplica la clase CSS
+                  secondaryTypographyProps={{ className: 'secondary-text' }} // Aplica la clase CSS
+                />
+              </ListItem>
+            ))}
+          </List>
+          <Box className="tema-del-dia">
+            {/* Aplica la clase CSS */}
+            <Typography variant="subtitle1">Tema del día</Typography>
+            <Box display="flex" alignItems="center">
+              <img
+                src="https://via.placeholder.com/50" // Reemplaza con la URL de tu imagen
+                alt="Dólar MEP"
+                className="tema-image" // Aplica la clase CSS
+              />
+              <Typography>Dólar MEP</Typography>
+            </Box>
+          </Box>
+        </Popover>
       </AppBar>
       <nav>
         <Drawer
