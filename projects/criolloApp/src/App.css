@@ -7,6 +7,21 @@
   transition: all 0.3s ease;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #005f37;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
 .App {
   display: flex;
   flex-direction: column;
@@ -244,7 +259,6 @@
 .community-questions {
   padding: 20px;
   text-align: center;
-  margin-top: 10rem;
   margin-bottom: 10rem;
   background-color:linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1612838056804-4b3b3b3b3b3b');
 }
