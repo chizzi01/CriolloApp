@@ -32,7 +32,7 @@ const IniText = 'Tutoriales'   // Define el texto de la sección de Inicio
 const ExpText = 'Practicas'  // Define el texto de la sección de Experiencia
 const DevText = 'Novedades'  // Define el texto de la sección de DevTools
 const PortText = 'Comunidad'  // Define el texto de la sección de Portfolio
-const username = 'User'
+const username = 'Usuario'
 
 
 

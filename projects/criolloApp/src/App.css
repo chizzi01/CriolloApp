@@ -75,7 +75,7 @@
 .avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 100%;
   margin-right: 10px;
 }
 
@@ -220,7 +220,7 @@
 }
 
 .card-button {
-  background-color: #28a745;
+  background: linear-gradient(90deg, #077647, #0DDC84);
   /* Verde del botón */
   color: #fff;
   padding: 10px 20px;
@@ -231,7 +231,7 @@
 }
 
 .card-button:hover {
-  background-color: #218838;
+  background: linear-gradient(90deg,  #0DDC84,  #077647);
 }
 
 .card-stats {

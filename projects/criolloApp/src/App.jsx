@@ -17,6 +17,8 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CardComunidad from './components/CardComunidad';
 import PregComunidad from './components/PregComunidad';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import Tutoriales from './Tutoriales';
 
 const theme = createTheme({
   components: {
@@ -56,6 +58,11 @@ export function App() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+
+// En tu componente principal
+<Router>
+</Router>
 
   return (
     <div className='App'>
