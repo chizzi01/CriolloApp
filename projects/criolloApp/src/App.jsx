@@ -17,6 +17,8 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CardComunidad from './components/CardComunidad';
 import PregComunidad from './components/PregComunidad';
+import  Tutoriales  from './components/Tutoriales';
+import Novedades from './components/Novedades';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import Tutoriales from './Tutoriales';
 
@@ -61,8 +63,10 @@ export function App() {
 
 
 // En tu componente principal
-<Router>
-</Router>
+{/* <Router>
+  <Route path="/tutoriales" component={Tutoriales} />
+  <Route path="/novedades" component={Novedades} />
+</Router> */}
 
   return (
     <div className='App'>

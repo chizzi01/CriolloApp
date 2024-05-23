@@ -36,6 +36,7 @@
   text-decoration: none;
   font-size: 1rem;
   font-weight: bold;
+  margin: 0 10px;
 }
 
 .navTexts a:hover {
@@ -139,11 +140,26 @@
 }
 
 .list-item {
-  padding: 8px 0;
+  padding: 8px;
+}
+
+.list-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.list-card:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
 }
 
 .primary-text {
   font-weight: bold;
+  color: #005f37;
 }
 
 .secondary-text {
@@ -151,9 +167,28 @@
 }
 
 .tema-del-dia {
-  margin-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
-  padding-top: 16px;
+  background-color: #4bbe81;
+  border-radius: 10px;
+}
+
+.temaDia-title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 15px 0px 0 15px;
+}
+
+.temaDia-subtitle {
+  color: #fff;
+  font-size: 1rem;
+  padding: 15px 0px 0 15px;
+  margin-bottom: 10px;
+}
+
+.tema-del-dia:hover {
+  background-color: #077647;
+  cursor: pointer;
 }
 
 .tema-image {
@@ -201,6 +236,12 @@
   align-items: center;
   padding: 20px;
   width: 100%;
+}
+
+.card-image {
+  flex: 1;
+  margin-right: 10px;
+  width: 25%;
 }
 
 .card-content {
@@ -254,6 +295,7 @@
   font-size: 14px;
 }
 
+
 /* CommunityQuestions.css */
 
 .community-questions {
@@ -265,8 +307,8 @@
 
 .community-questions h2 {
   color: #1e824c;
-  font-size: 24px;
-  margin-bottom: 20px;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
 }
 
 .questions-container {
@@ -281,8 +323,8 @@
   border: 1px solid #dfe5ec;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 250px;
+  padding: 50px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -336,6 +378,7 @@
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
+  padding-top: 50px;
 }
 
 .footer-column {

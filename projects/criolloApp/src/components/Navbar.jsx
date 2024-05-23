@@ -11,15 +11,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Popover from '@mui/material/Popover';
-import { ControlledSwitches } from './Switch'
 import '../../src/App.css'
 import logo from '../assets/CRIOLL.png'
 import avatarUrl from '../assets/avatar.jpg'
@@ -114,19 +112,29 @@ export function DrawerAppBar({ window, currentSection }) {
               },
             },
           }}>
-            <Button
-              disableRipple
-              onMouseEnter={(event) => { handlePopoverOpen(event); }}
-            ><a className={currentSection === 'tutoriales-section' ? 'active' : ''} href="#avatar-section" >{IniText}</a>  <ExpandMoreIcon
-                style={{
-                  color: '#077647',
-                  transform: anchorEl ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.3s ease-in-out'
-                }}
-              /></Button>
-            <Button disableRipple><a className={currentSection === 'practicas-section' ? 'active' : ''} href="#experiencia-section" >{ExpText}</a></Button>
-            <Button disableRipple><a className={currentSection === 'novedades-section' ? 'active' : ''} href="#devtools-section" >{DevText}</a></Button>
-            <Button disableRipple><a className={currentSection === 'comunidad-section' ? 'active' : ''} href="#proyectos-section" >{PortText}</a></Button>
+            <Link to="/tutoriales">
+              <Button
+                disableRipple
+                onMouseEnter={(event) => { handlePopoverOpen(event); }}
+              ><a className={currentSection === 'tutoriales-section' ? 'active' : ''}  >{IniText}</a>  <ExpandMoreIcon
+                  style={{
+                    color: '#077647',
+                    transform: anchorEl ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.3s ease-in-out'
+                  }}
+                /></Button>
+            </Link>
+            <Link to="/practicas">
+              <Button disableRipple><a className={currentSection === 'practicas-section' ? 'active' : ''}  >{ExpText}</a></Button>
+            </Link>
+            <Link to="/novedades">
+              <Button disableRipple><a className={currentSection === 'novedades-section' ? 'active' : ''}>
+                {DevText}
+              </a> </Button>
+            </Link>
+            <Link to="/comunidad">
+              <Button disableRipple><a className={currentSection === 'comunidad-section' ? 'active' : ''}  >{PortText}</a></Button>
+            </Link>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex', padding: 5 } }}>
             <div className="user-badge">
@@ -176,27 +184,23 @@ export function DrawerAppBar({ window, currentSection }) {
                 secondary: 'Explora oportunidades de inversión y aprende a hacer crecer tu dinero',
               },
             ].map((item, index) => (
-              <ListItem key={index} className="list-item">
-                {/* Aplica la clase CSS */}
-                <ListItemText
-                  primary={item.primary}
-                  secondary={item.secondary}
-                  primaryTypographyProps={{ className: 'primary-text' }} // Aplica la clase CSS
-                  secondaryTypographyProps={{ className: 'secondary-text' }} // Aplica la clase CSS
-                />
-              </ListItem>
+              <div className='list-card'>
+                <ListItem key={index} className="list-item">
+                  {/* Aplica la clase CSS */}
+                  <ListItemText
+                    primary={item.primary}
+                    secondary={item.secondary}
+                    primaryTypographyProps={{ className: 'primary-text' }} // Aplica la clase CSS
+                    secondaryTypographyProps={{ className: 'secondary-text' }} // Aplica la clase CSS
+                  />
+                </ListItem>
+              </div>
             ))}
           </List>
           <Box className="tema-del-dia">
-            {/* Aplica la clase CSS */}
-            <Typography variant="subtitle1">Tema del día</Typography>
+            <h1 className='temaDia-title'>Tema del día</h1>
             <Box display="flex" alignItems="center">
-              <img
-                src="https://via.placeholder.com/50" // Reemplaza con la URL de tu imagen
-                alt="Dólar MEP"
-                className="tema-image" // Aplica la clase CSS
-              />
-              <Typography>Dólar MEP</Typography>
+              <h3 className='temaDia-subtitle'>Dólar MEP</h3>
             </Box>
           </Box>
         </Popover>

@@ -1,10 +1,12 @@
 import React from 'react';
 import '../App.css'; // Asegúrate de crear este archivo y agregar los estilos correspondientes
+import persona from '../assets/comunidad.png';
 
 const CardComunidad = () => {
   return (
     <div className="card-container">
       <div className="card floating">
+      <img src={persona} alt="Comunidad" className="card-image" />
         <div className="card-content">
           <h2 className="card-title">COMUNIDAD CRIOLLA</h2>
           <p className="card-description">
