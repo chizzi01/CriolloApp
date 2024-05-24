@@ -54,6 +54,11 @@
   width: 100%;
 }
 
+.navTexts:focus{
+  outline: none;
+
+}
+
 .current-section {
   color: #7dfa6d;
 }
@@ -63,14 +68,10 @@
   display: flex;
   align-items: center;
   background-color: #2f8f2f;
-  /* Cambia el color de fondo al verde que prefieras */
-  border-radius: 25px;
-  /* Redondea los bordes */
-  padding: 10px;
+  border-radius: 60px;
+  padding: 6px;
   color: white;
-  /* Color del texto */
   font-family: Arial, sans-serif;
-  /* Cambia la fuente si lo deseas */
 }
 
 .avatar {
@@ -82,13 +83,11 @@
 
 .username {
   font-size: 1rem;
-  /* Ajusta el tamaño del texto */
 }
 
 
 .user-badge:hover {
   background-color: #7dfa6d;
-  /* Cambia el color de fondo al verde que prefieras */
   cursor: pointer;
 }
 
@@ -153,7 +152,8 @@
 }
 
 .list-card:hover {
-  background-color: #f1f1f1;
+  background: linear-gradient(rgba(81, 255, 0, 0.2), rgb(255, 255, 255));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
@@ -168,27 +168,40 @@
 
 .tema-del-dia {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
-  background-color: #4bbe81;
   border-radius: 10px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/dolamep.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .temaDia-title {
-  color: #fff;
+  color: #7dfa6d;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 15px 0px 0 15px;
 }
 
 .temaDia-subtitle {
-  color: #fff;
+  color: #FFF;
   font-size: 1rem;
   padding: 15px 0px 0 15px;
   margin-bottom: 10px;
 }
 
 .tema-del-dia:hover {
-  background-color: #077647;
   cursor: pointer;
+  background-image: linear-gradient(rgba(25, 78, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/dolamep.webp');
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tema-del-dia:hover .temaDia-title {
+  color: #FFF;
+}
+
+.tema-del-dia:hover .temaDia-subtitle {
+
+  color: #7dfa6d;
 }
 
 .tema-image {
@@ -203,6 +216,27 @@
 
 /* App.css */
 
+.dropdown {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  line-height: 2;
+  color: #005f37;
+  font-weight: bold;
+}
+
+.dropdown .item {
+  color: #005f37;
+}
+
+.dropdown .item:hover {
+  background-color: #e6f5ee;
+  cursor: pointer;
+  padding: 10px;
+}
+
 .carousel-container {
   position: relative;
   width: 100%;
@@ -216,8 +250,8 @@
 }
 
 .card-container {
-  position: sticky; 
-  left: 50vw; 
+  position: sticky;
+  left: 50vw;
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
@@ -258,6 +292,7 @@
   color: #333;
   font-size: 16px;
   margin-bottom: 20px;
+  padding-right: 20px;
 }
 
 .card-button {
@@ -272,7 +307,7 @@
 }
 
 .card-button:hover {
-  background: linear-gradient(90deg,  #0DDC84,  #077647);
+  background: linear-gradient(90deg, #0DDC84, #077647);
 }
 
 .card-stats {
@@ -285,10 +320,15 @@
 }
 
 .stats-number {
-  font-size: 24px;
+  font-size: 2rem;
   margin-bottom: 5px;
   color: #e6c300;
+  font-weight: bold;
   /* Amarillo para el número */
+}
+
+.stats-image {
+  width: 150px;
 }
 
 .stats-text {
@@ -302,8 +342,10 @@
   padding: 20px;
   text-align: center;
   margin-bottom: 10rem;
-  background-color:linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1612838056804-4b3b3b3b3b3b');
+  background-color: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://images.unsplash.com/photo-1612838056804-4b3b3b3b3b3b');
 }
+
+
 
 .community-questions h2 {
   color: #1e824c;
@@ -318,6 +360,8 @@
   flex-wrap: wrap;
 }
 
+
+
 .question-card {
   background-color: #ffffff;
   border: 1px solid #dfe5ec;
@@ -330,6 +374,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.question-card:hover {
+  transform: scale(1.02);
+}
+
 
 .question {
   color: #077647;
@@ -464,6 +513,271 @@
 }
 
 
+.inversiones-container {
+  background-color: #fff;
+  height: 100vh;
+}
+
+.inversiones-content {
+  margin-bottom: 20px;
+}
+
+.inversiones-content h1 {
+  color: #FFA500;
+  font-size: 2.5em;
+}
+
+.inversiones-content h2 {
+  color: #FFA500;
+  font-size: 2em;
+}
+
+.inversiones-content p {
+  font-size: 1.2em;
+  margin: 20px 0;
+}
+
+.learn-button {
+  background-color: #FFA500;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.learn-button:hover {
+  background-color: #e59400;
+}
+
+.inversiones-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.image-circle {
+  position: absolute;
+  top: 0;
+  /* Ajusta esto para mover el círculo hacia arriba */
+  left: 50%;
+  transform: translate(-50%, 0);
+  clip-path: circle(50% at 50% 0%);
+  width: 80%;
+  height: 100%;
+}
+
+.image-item {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-item img {
+  width: 50%;
+  height: 50%;
+}
+
+.imagenes-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 50%;
+  /* overflow: hidden; */
+}
+
+.circle-image {
+  position: absolute;
+  top: 20%;
+  /* Cambia la posición de las imágenes */
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 50%;
+  transform-origin: center bottom;
+  /* Cambia el origen de la transformación */
+}
+
+.circle-image:nth-child(1) {
+  left: 20%;
+  top: 30%;
+}
+
+.circle-image:nth-child(2) {
+  left: 30%;
+  top: 20%;
+}
+
+.circle-image:nth-child(3) {
+  left: 45%;
+  top: 15%;
+}
+
+.circle-image:nth-child(4) {
+  left: 60%;
+  top: 20%;
+}
+
+.circle-image:nth-child(5) {
+  left: 70%;
+  top: 30%;
+}
+
+.circle-image.not-selected {
+  filter: grayscale(100%);
+}
+
+.textoInversiones-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  padding: 10px;
+  left: 2%;
+}
+
+.textoInversiones-container h1 {
+  color: #FFC76F;
+  font-size: 3em;
+}
+
+.textoInversiones-container h2 {
+  color: #3b3b3b;
+  font-size: 2em;
+}
+
+.textoInversiones-container p {
+  font-size: 1em;
+}
+
+.AprenderBtn {
+  color: #fff;
+  border: none;
+  padding: 15px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 30px;
+  margin-top: 20px;
+  font-weight: bold;
+  z-index: 10;
+  position: relative;
+  overflow: hidden;
+}
+
+.AprenderBtn:before,
+.AprenderBtn:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: seagreen;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.AprenderBtn:before{
+  opacity: .5;
+}
+
+.AprenderBtn:after{
+  transition-delay: .2s;
+}
+
+.AprenderBtn:hover{
+  color: #fff;
+}
+
+.AprenderBtn:hover:before,
+.AprenderBtn:hover:after{
+  top: 0;
+}
+
+.AprenderBtn:focus{
+  outline: none;
+} 
+
+.imagenCentral {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.flechas-container{
+  position: relative;
+  width: 100%;
+  bottom: 20%;
+  z-index: 1;
+}
+
+.flechas-align{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.flecha {
+  color: #fff;
+  padding: 2px;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+
+button.flecha:hover {
+  transform: scale(1.1);
+  rotate: 0deg;
+}
+
+button.flecha.der:hover {
+  transform: scale(1.1);
+  rotate: 180deg;
+}
+
+button.flecha:active, button.flecha:focus {
+  outline: none;
+}
+
+.flecha img {
+  width: 20px;
+  height: 20px;
+}
+
+.der {
+  transform: rotate(180deg);
+}
+
+.eslogan-container {
+  position: relative;
+  text-align: center;
+  font-size: 1.5em;
+  bottom: 10%;
+}
+
+.imagenInversiones {
+  position: absolute;
+  top: 40%;
+  right: 0;
+  transform: translateY(-50%);
+  animation: float 6s infinite;
+}
 
 
 @keyframes float {
@@ -487,5 +801,15 @@
 
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

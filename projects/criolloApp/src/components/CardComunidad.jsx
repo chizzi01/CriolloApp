@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import '../App.css'; // Asegúrate de crear este archivo y agregar los estilos correspondientes
 import persona from '../assets/comunidad.png';
+import personas from '../assets/personas.png';
+import { useState, useEffect } from 'react';
 
-const CardComunidad = () => {
+const CardComunidad = ({isVisible}) => {
+  const [counter, setCounter] = useState(0);
+  const personasAnim = useRef(null);
+
+
+  useEffect(() => {
+    if (isVisible) {
+      let count = 0;
+      const interval = setInterval(() => {
+        count += 1;
+        if (count > 20) {
+          clearInterval(interval);
+        } else {
+          setCounter(count);
+        }
+      }, 80);
+
+      if (personasAnim.current) {
+        personasAnim.current.style.animation = 'fadeIn 1s forwards';
+      }
+      return () => clearInterval(interval);
+    }
+  }, [isVisible]);
+
+
+
   return (
     <div className="card-container">
       <div className="card floating">
-      <img src={persona} alt="Comunidad" className="card-image" />
+        <img src={persona} alt="Comunidad" className="card-image" />
         <div className="card-content">
           <h2 className="card-title">COMUNIDAD CRIOLLA</h2>
           <p className="card-description">
@@ -15,7 +42,8 @@ const CardComunidad = () => {
           <button className="card-button">UNIRME</button>
         </div>
         <div className="card-stats">
-          <p className="stats-number">20K+</p>
+          <img src={personas} alt="Personas" className="stats-image" ref={personasAnim}/>
+          <p className="stats-number">{counter}K+</p>
           <p className="stats-text">Vidas fueron cambiadas</p>
         </div>
       </div>

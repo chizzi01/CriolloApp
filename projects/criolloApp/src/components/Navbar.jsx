@@ -38,7 +38,7 @@ const username = 'Usuario'
 // Define el resto de los textos de la misma manera
 
 
-export function DrawerAppBar({ window, currentSection }) {
+export default function DrawerAppBar({ window, currentSection }) {
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -102,7 +102,9 @@ export function DrawerAppBar({ window, currentSection }) {
           >
             <MenuIcon />
           </IconButton>
+          <Link to="/">
           <img src={logo} alt="Logo" style={{ width: '4rem', height: '4rem', padding: '5px' }} />
+          </Link>
           <Box className="navTexts" sx={{
             flexGrow: 1,
             display: { xs: 'none', sm: 'block' },
@@ -116,6 +118,7 @@ export function DrawerAppBar({ window, currentSection }) {
               <Button
                 disableRipple
                 onMouseEnter={(event) => { handlePopoverOpen(event); }}
+                style={{outline: 'none'}}
               ><a className={currentSection === 'tutoriales-section' ? 'active' : ''}  >{IniText}</a>  <ExpandMoreIcon
                   style={{
                     color: '#077647',
@@ -125,15 +128,15 @@ export function DrawerAppBar({ window, currentSection }) {
                 /></Button>
             </Link>
             <Link to="/practicas">
-              <Button disableRipple><a className={currentSection === 'practicas-section' ? 'active' : ''}  >{ExpText}</a></Button>
+              <Button style={{outline: 'none'}} disableRipple><a className={currentSection === 'practicas-section' ? 'active' : ''}  >{ExpText}</a></Button>
             </Link>
             <Link to="/novedades">
-              <Button disableRipple><a className={currentSection === 'novedades-section' ? 'active' : ''}>
+              <Button  style={{outline: 'none'}} disableRipple><a className={currentSection === 'novedades-section' ? 'active' : ''}>
                 {DevText}
               </a> </Button>
             </Link>
             <Link to="/comunidad">
-              <Button disableRipple><a className={currentSection === 'comunidad-section' ? 'active' : ''}  >{PortText}</a></Button>
+              <Button  style={{outline: 'none'}} disableRipple><a className={currentSection === 'comunidad-section' ? 'active' : ''}  >{PortText}</a></Button>
             </Link>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex', padding: 5 } }}>
@@ -185,6 +188,7 @@ export function DrawerAppBar({ window, currentSection }) {
               },
             ].map((item, index) => (
               <div className='list-card'>
+                <Link to="/inversiones">
                 <ListItem key={index} className="list-item">
                   {/* Aplica la clase CSS */}
                   <ListItemText
@@ -194,6 +198,7 @@ export function DrawerAppBar({ window, currentSection }) {
                     secondaryTypographyProps={{ className: 'secondary-text' }} // Aplica la clase CSS
                   />
                 </ListItem>
+                </Link>
               </div>
             ))}
           </List>
