@@ -7,6 +7,10 @@
   transition: all 0.3s ease;
 }
 
+*:focus {
+  outline: none;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   background: transparent;
@@ -778,6 +782,252 @@ button.flecha:active, button.flecha:focus {
   transform: translateY(-50%);
   animation: float 6s infinite;
 }
+
+/* src/App.css */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+
+/* src/components/UserHeader.css */
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #efffec;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  margin-top: 100px;
+  width: 90%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  margin-right: 20px;
+  width: 100px;
+  height: 100px;
+}
+
+.user-details h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.user-details p {
+  margin: 0;
+  color: #777;
+}
+
+.user-stats {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.stat {
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.stat-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.stat-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.stat span {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.stat p {
+  margin: 0;
+  color: #777;
+}
+
+
+
+/* src/components/PracticeList.css */
+
+.practica-container {
+  margin-top: 20px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.practicelist-container{
+  height: auto;
+  width: 90%;
+  padding: 20px;
+}
+
+.practice-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 20px;
+  height: auto;
+  min-height: 100vh;
+  margin-top: 20px;
+}
+
+/* src/components/PracticeCard.css */
+.practice-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 350px;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.practice-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.practice-info {
+  padding: 15px;
+}
+
+.practice-info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.practice-info p {
+  color: #777;
+  margin: 10px 0;
+}
+
+.practice-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.practice-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.practice-button:hover {
+  background-color: #45a049;
+}
+
+.practice-button:focus {
+  outline: none;
+}
+
+.practice-progress {
+  color: #777;
+}
+
+.search-practica-align{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.search-practica{
+background-color: #f9f9f9;
+border-radius: 10px;
+width: 50%;
+padding: 10px;
+line-height: 2;
+color: #005f37;
+font-weight: bold;
+border:  1px solid #005f37;
+}
+
+.select-practica{
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 10px;
+  line-height: 2;
+  color: #005f37;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+select {
+  border: 1px solid #005f37;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #005f37; /* Esto elimina el estilo predeterminado en otros navegadores */
+}
+
+option {
+  background-color: #f9f9f9;
+  color: #005f37;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 10;
+  padding: 20px;
+}
+
 
 
 @keyframes float {

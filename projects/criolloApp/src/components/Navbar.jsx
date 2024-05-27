@@ -90,8 +90,9 @@ export default function DrawerAppBar({ window, currentSection }) {
       <CssBaseline />
       <AppBar component="nav"
         sx={{
-          background: 'linear-gradient(90deg, rgba(255,255,255,1) 30%, rgba(71,216,48,0.113676470588235) 50%, rgba(255,255,255,1) 66%);'
-        }}>
+          background: '#FFF',
+        }}
+        >
         <Toolbar>
           <IconButton
             color="#077647"
