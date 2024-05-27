@@ -38,7 +38,7 @@ const practicesData = [
         image: 'https://blog.selfbank.es/wp-content/uploads/2019/10/GettyImages-942840398.jpg',
         title: 'Análisis Fundamental',
         description: 'Curso sobre Análisis Fundamental',
-        progress: 0,
+        progress: 100,
         date: '2024-20-01',
     },
     {

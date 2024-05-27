@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import PracticeCard from './PracticeCard.jsx';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
 import '../App.css';
 
 const PracticeList = ({ practices }) => {
@@ -19,7 +23,34 @@ const PracticeList = ({ practices }) => {
     return (
         <div className='practicelist-container'>
             <div className='search-practica-align'>
-                <input className='search-practica' type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Buscar..." />
+            <TextField
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton sx={{ color: '#32795B' }}>
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            sx={{
+              width: '60%',
+              color: '#32795B',
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#32795B',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#32795B',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#32795B',
+                },
+              },
+            }}
+          />
                 <select className='select-practica' value={filter1} onChange={e => setFilter1(e.target.value)}>
                     <option value="" hidden>Antiguedad...</option>
                     <option value="">Ninguna</option>

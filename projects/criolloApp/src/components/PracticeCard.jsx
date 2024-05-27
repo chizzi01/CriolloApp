@@ -13,11 +13,11 @@ const PracticeCard = ({ image, title, description, progress }) => {
       </div>
       <div className="practice-footer">
         <Link to="/cedears">
-        <button className="practice-button">PRACTICAR</button>
+        <button className="practice-button">{progress === 100 ? 'Completado' : 'Practicar'}</button>
         </Link>
         <span className="practice-progress">{progress}% Completado</span>
       </div>
-
+      <div style={{width: `${progress}%`, height: '5px', backgroundColor: 'green'}}></div>
     </div>
   );
 };
