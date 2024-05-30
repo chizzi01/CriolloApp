@@ -18,6 +18,7 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CardComunidad from './components/CardComunidad';
 import PregComunidad from './components/PregComunidad';
+import alert from './assets/alert.png'
 // import Tutoriales from './Tutoriales';
 
 const theme = createTheme({
@@ -150,52 +151,51 @@ export function App() {
         </div>
         <img src={mateCelu} alt="" className='homeImgs' />
       </section>
-      <div id='top3Array' style={{ overflow: 'hidden', whiteSpace: 'nowrap', width: '100%' }}>
-        <div style={{
-          display: 'inline-block',
-          animation: 'marquee 10s linear infinite',
-          width: '100%',
-        }}>
-          <div style={{ marginRight: '100px', display: 'inline' }}>
-            <span role="img" aria-label="attention">⚠️</span> TOP 3 MÁS BUSCADOS EN CRIOLLO
-          </div>
-          <div style={{ marginRight: '100px', display: 'inline' }}>
-            <span role="img" aria-label="attention">⚠️</span> TOP 3 MÁS BUSCADOS EN CRIOLLO
-          </div>
-          <div style={{ marginRight: '100px', display: 'inline' }}>
-            <span role="img" aria-label="attention">⚠️</span> TOP 3 MÁS BUSCADOS EN CRIOLLO
-          </div>
-          <div style={{ marginRight: '100px', display: 'inline' }}>
-            <span role="img" aria-label="attention">⚠️</span> TOP 3 MÁS BUSCADOS EN CRIOLLO
-          </div>
-          <div style={{ marginRight: '100px', display: 'inline' }}>
-            <span role="img" aria-label="attention">⚠️</span> TOP 3 MÁS BUSCADOS EN CRIOLLO
-          </div>
-          <div style={{ marginRight: '100px', display: 'inline' }}>
-            <span role="img" aria-label="attention">⚠️</span> TOP 3 MÁS BUSCADOS EN CRIOLLO
-          </div>
-          <div style={{ marginRight: '100px', display: 'inline' }}>
-            <span role="img" aria-label="attention">⚠️</span> TOP 3 MÁS BUSCADOS EN CRIOLLO
-          </div>
-        </div>
+      <div style={{ position: 'relative' }}>
+  <section id='topCriollo'>
+    <Carousel autoPlay interval={2000} infiniteLoop showThumbs={false} showIndicators={false}>
+      <div>
+        <img src={top1} alt="Top 1" />
       </div>
-
-      <section id='topCriollo'>
-        <Carousel autoPlay interval={2000} infiniteLoop showThumbs={false} showIndicators={false}>
-          <div>
-            <img src={top1} alt="Top 1" />
-          </div>
-          <div>
-            <img src={top2} alt="Top 2" />
-          </div>
-          <div>
-            <img src={top3} alt="Top 3" />
-          </div>
-        </Carousel>
-        <div id='comunidad' ref={cardRef}>
+      <div>
+        <img src={top2} alt="Top 2" />
+      </div>
+      <div>
+        <img src={top3} alt="Top 3" />
+      </div>
+    </Carousel>
+    <div id='comunidad' ref={cardRef}>
           <CardComunidad isVisible={isCardVisible} />
         </div>
-      </section>
+  </section>
+
+  <div id='top3Array' style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    width: '100%',
+  }}>
+    <div style={{
+      animation: 'marquee 10s linear infinite',
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'Inter',
+      fontSize: '30px',
+      color : 'white',
+      padding: '10px',
+    }}>
+      {Array(7).fill().map((_, i) => (
+        <div key={i} style={{ marginRight: '100px', display: 'flex', alignItems: 'center', justifyContent:'center' }}>
+          <span role="img" aria-label="attention"><img className='alertImg' src={alert} alt="" /></span> TOP 3 MÁS BUSCADOS EN CRIOLLO
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
 
       <section id='preguntasComunidad-section'>
         <PregComunidad />

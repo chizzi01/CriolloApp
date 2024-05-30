@@ -39,13 +39,20 @@ export default function InversionesComponent() {
     return (
         <div className="inversiones-container">
             <div className="image-circle" style={{ backgroundColor: imagenes[indiceActual].color }}>
-                <div className="imagenes-circle">
+                <div className="imagenes-circle" style={{ overflow: 'visible',zIndex:1 }}>
                     {imagenes.map((imagen, indice) => (
+                        <div key={indice} className={`circle-image ${indice !== indiceActual ? 'not-selected' : ''}`}>
                         <img
                             src={imagen.src}
                             alt={imagen.titulo}
                             className={`circle-image ${indice !== indiceActual ? 'not-selected' : ''}`}
+                            onClick={() => setIndiceActual(indice)}
+                            style={{ 
+                                transform: indice === indiceActual ? 'scale(1)' : 'scale(0.8)' // Agrega esta línea
+                              }}
                         />
+                            <div className="circle-text">{imagen.titulo}</div>
+                        </div>
                     ))}
                 </div>
             </div>
@@ -58,7 +65,7 @@ export default function InversionesComponent() {
             </div>
 
             <div className='imagenCentral'>
-                <img src={imagenes[indiceActual].src} alt='imagen central' className='imagenCentral' />
+                <img src={imagenes[indiceActual].src} alt='imagen central' />
             </div>
 
             <div className='flechas-container'>

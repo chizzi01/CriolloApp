@@ -5,7 +5,7 @@ import { App } from './App';
 import DrawerAppBar from './components/Navbar'; // Asegúrate de que la ruta de importación sea correcta
 import Novedades from './components/Novedades'; // Asegúrate de que la ruta de importación sea correcta
 import InversionesComponent from './components/Inversiones';
-import CEDEARTable from './components/CEDEARTable';
+import PracticaCedears from './components/PracticaCedears';
 import Practica from './components/Practica';
 import './index.css';
 
@@ -21,7 +21,7 @@ root.render(
         <Route path="/inversiones" element={<InversionesComponent />} />
         <Route path="*" element={<h1>404: Página no encontrada</h1>} />
         <Route path="/practicas" element={<Practica />} />
-        <Route path="/cedears" element={<CEDEARTable />} />
+        <Route path="/cedears" element={<PracticaCedears />} />
       </Routes>
     </Router>
   </React.StrictMode>
