@@ -18,9 +18,9 @@ const AddFundsModal = ({ onClose, onAddFunds }) => {
         <Modal open={true} onClose={onClose} style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
         }}>
-            <div style={{ padding: '1em', backgroundColor: 'white' }}>
+            <div style={{ padding: '1em', backgroundColor: 'white', borderRadius: 10, }}>
                 <h2 style={{padding:10, color:"#1e824c"}}>Ingresar dinero</h2>
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2em' }}>
                     <TextField

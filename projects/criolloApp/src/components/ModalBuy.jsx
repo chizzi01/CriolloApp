@@ -20,16 +20,22 @@ export default function BuyModal({ open, onClose, cedear }) {
         const cedearPrice = parseFloat(cedear['04. current price'].replace('$', ''));
         const quantityNumber = parseInt(quantity);
 
-        // Calcula el precio total de la compra
-        const totalPurchasePrice = cedearPrice * quantityNumber;
+        const performance = (Math.random() * 4 - 2).toFixed(2);
 
         if (cedearIndex !== -1) {
-            // Si el cedear ya está en la lista, actualiza su cantidad
+            // Si el cedear ya está en la lista, actualiza su cantidad y precio
             cedears[cedearIndex].quantity += quantityNumber;
+            cedears[cedearIndex].price = cedearPrice;
+            cedears[cedearIndex].performance = performance;
         } else {
             // Si el cedear no está en la lista, añádelo
-            cedears.push({ name: cedear['01. symbol'], quantity: quantityNumber, price: cedearPrice });
-
+            cedears.push({ 
+                name: cedear['01. symbol'], 
+                quantity: quantityNumber, 
+                price: cedearPrice, 
+                performance: performance 
+            });
+        
             console.log(cedears);
         }
 

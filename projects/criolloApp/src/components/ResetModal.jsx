@@ -15,8 +15,8 @@ const ResetModal = ({ onClose, onReset }) => {
                 flexDirection: 'column',
                 gap: '2em',
                 alignItems: 'center',
-                justifyContent: 'center'
-
+                justifyContent: 'center',
+                borderRadius: 10,
             }}>
                 <h2>Restablecer fondos</h2>
                 <p>¿Estás seguro de que quieres restablecer tus fondos?</p>

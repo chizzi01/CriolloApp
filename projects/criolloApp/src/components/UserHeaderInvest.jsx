@@ -39,6 +39,7 @@ const UserHeaderInvest = () => {
     
         // Añade la cantidad de dinero a los fondos del usuario
         currentBalance += amount;
+        currentBalance = currentBalance.toFixed(2);
     
         // Guarda el nuevo saldo en el localStorage
         localStorage.setItem('saldo', currentBalance.toString());
