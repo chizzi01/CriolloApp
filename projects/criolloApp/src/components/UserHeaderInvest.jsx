@@ -69,15 +69,6 @@ const UserHeaderInvest = () => {
                     </div>
                 </div>
                 <div className="user-options">
-                    <div className="stat" style={{ backgroundColor: "#E2FCE0" }}>
-                        <div className='stat-icon'>
-                            <img src={total} alt="" />
-                        </div>
-                        <div className='stat-dataInvest'>
-                            <span>Total invertido</span>
-                            <p style={{ color: "#19911E" }}>${totalInv}</p>
-                        </div>
-                    </div>
                     <div className="stat" style={{ backgroundColor: "#DDB4EB" }}>
                         <div className='stat-icon'>
                             <img src={saldo} alt="" />
@@ -85,6 +76,15 @@ const UserHeaderInvest = () => {
                         <div className='stat-dataInvest'>
                             <span>Saldo disponible</span>
                             <p style={{ color: "#C10BFF" }}>${saldoInv}</p>
+                        </div>
+                    </div>
+                    <div className="stat" style={{ backgroundColor: "#E2FCE0" }}>
+                        <div className='stat-icon'>
+                            <img src={total} alt="" />
+                        </div>
+                        <div className='stat-dataInvest'>
+                            <span>Total invertido</span>
+                            <p style={{ color: "#19911E" }}>${totalInv}</p>
                         </div>
                     </div>
                 </div>

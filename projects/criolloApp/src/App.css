@@ -12,11 +12,11 @@
 
 ::-webkit-scrollbar {
   width: 10px;
-  background: transparent;
+  background: white;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #005f37;
+  background-color: #70707091;
   border-radius: 10px;
 }
 
@@ -524,7 +524,7 @@
 
 .inversiones-container {
   background-color: #fff;
-  height: 100%;
+  height: 100vh;
 }
 
 .inversiones-content {
@@ -795,9 +795,10 @@ button.flecha:focus {
 .imagenInversiones {
   position: absolute;
   top: 40%;
-  right: 0;
+  right: 5%;
   transform: translateY(-50%);
   animation: float 6s infinite;
+  width: 300px;
 }
 
 /* src/App.css */

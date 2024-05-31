@@ -24,18 +24,11 @@ const CEDEARTable = () => {
   const [selectedCedear, setSelectedCedear] = useState(null);
   const [page, setPage] = useState(0);
   const [pageCartera, setPageCartera] = useState(0);
-  // const [portfolio, setPortfolio] = useState([]);
+  const [portfolio, setPortfolio] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [performance, setPerformance] = useState([]);
   const [selectedCedearForSell, setSelectedCedearForSell] = useState(null);
   const [sellModalOpen, setSellModalOpen] = useState(false);
   const itemsPerPage = 6;
-
-
-  const [portfolio, setPortfolio] = useState(() => {
-    const storedPortfolio = localStorage.getItem('cedears');
-    return storedPortfolio ? JSON.parse(storedPortfolio) : [];
-  });
 
   const fetchData = async () => {
     try {
@@ -90,7 +83,13 @@ const CEDEARTable = () => {
         ];
       }
 
-      setCedears(data);
+      // Generar rendimientos aleatorios y agregarlos a los datos
+      const dataWithPerformance = data.map(item => {
+        const performance = (Math.random() * 2 - 1).toFixed(2); // Genera un rendimiento entre -1% y 1%
+        return { ...item, performance };
+      });
+
+      setCedears(dataWithPerformance);
       setLoading(false);
 
     } catch (error) {
@@ -124,7 +123,6 @@ const CEDEARTable = () => {
   );
   const totalPages = Math.ceil(filteredCedears.length / itemsPerPage);
   const totalPagesCartera = Math.ceil(filteredPortfolio.length / itemsPerPage);
-
 
   const handlePageClick = (pageNumber) => {
     setPage(pageNumber);
@@ -247,7 +245,12 @@ const CEDEARTable = () => {
         <tbody>
           {filteredCedears.slice(page * itemsPerPage, (page + 1) * itemsPerPage).map((cedear, index) => (
             <tr key={index}>
-              <td>{cedear['01. symbol']}</td>
+              <td>
+                {cedear['01. symbol']}{" "}
+                <span style={{ color: cedear.performance > 0 ? 'green' : 'red' }}>
+                  {cedear.performance}%
+                </span>
+              </td>
               <td>{cedear['02. description']}</td>
               <td>{cedear['03. conversion ratio']}</td>
               <td>{cedear['04. current price']}</td>
@@ -428,8 +431,8 @@ const CEDEARTable = () => {
       {selectedCedearForSell && (
         <SellModal open={sellModalOpen}
           onClose={() => setSellModalOpen(false)}
-          cedear={selectedCedearForSell} 
-          />
+          cedear={selectedCedearForSell}
+        />
       )}
 
     </div>

@@ -70,7 +70,6 @@ export default function PieActiveArc() {
             data: series,
             highlightScope: { faded: 'global', highlighted: 'item' },
             radius: { inner: 0.5, outer: 1 },
-            label: { position: 'center' },
             color: { scheme: 'paired' },
             arc: { cornerRadius: 10 },
             tooltip: { align: 'center' },
