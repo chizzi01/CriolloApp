@@ -28,6 +28,7 @@ const CEDEARTable = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCedearForSell, setSelectedCedearForSell] = useState(null);
   const [sellModalOpen, setSellModalOpen] = useState(false);
+  const [actualCedears, setActualCedears] = useState([]);
   const itemsPerPage = 6;
 
   const fetchData = async () => {
@@ -119,6 +120,7 @@ const CEDEARTable = () => {
 
     const updatedDataWithProfit = calculateProfit(updatedCedears);
     setCedears(updatedDataWithProfit);
+    setActualCedears(updatedDataWithProfit);
   };
 
   const calculateProfit = (currentCedears) => {
@@ -144,11 +146,15 @@ const CEDEARTable = () => {
   }, []);
 
   useEffect(() => {
-    const storedCedears = localStorage.getItem('actualCedears');
+    const storedCedears = localStorage.getItem('portfolio');
     if (storedCedears) {
       setPortfolio(JSON.parse(storedCedears));
+
     }
   }, []);
+
+  // obterner portfolio de cedears
+
 
   const filteredPortfolio = portfolio.filter(item =>
     item.name && item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -202,7 +208,19 @@ const CEDEARTable = () => {
     setSellModalOpen(true);
   };
 
-  
+
+
+  const getCurrentPrice = (symbol) => {
+    const cedear = actualCedears.find(c => c['01. symbol'] === symbol);
+    return cedear ? cedear['04. current price'] : 0;
+  };
+
+  const getCurrentProfit = (symbol) => {
+    const cedear = actualCedears.find(c => c['01. symbol'] === symbol);
+    return cedear ? cedear.profit : 0;
+  };
+
+
 
   return (
     <div className='practicaCedears-container'>
@@ -314,7 +332,7 @@ const CEDEARTable = () => {
               </td>
               <td>{cedear['02. description']}</td>
               <td>{cedear['03. conversion ratio']}</td>
-              <td>{parseFloat(cedear['04. current price']).toFixed(2)}</td>
+              <td>{parseFloat(getCurrentPrice(cedear['01. symbol'])).toFixed(2)}</td>
               <td>{cedear['05. commission']}</td>
               <td>{cedear['06. total cost']}</td>
               <td>
@@ -448,20 +466,20 @@ const CEDEARTable = () => {
           </TableRow>
         </TableHead>
         <tbody>
-          {filteredPortfolio.filter(item => item.name !== 'Ninguno').map((item, index) => (
+          {paginatedPortfolio.filter(item => item.name !== 'Ninguno').map((item, index) => (
             <tr key={index}>
               <td>{item.name}</td>
               <td>{item.quantity}</td>
-              <td>{item.price}</td>
-              <td>{(item.price * (1 + item.performance / 100)).toFixed(2)}</td>
-              <td style={{ color: item.performance >= 0 ? 'green' : 'red' }}>
-                {item.performance >= 0 ? `+${item.performance}%` : `${item.performance}%`}
+              <td>{parseFloat(item.price).toFixed(2)}</td>
+              <td>{parseFloat(getCurrentPrice(item.name)).toFixed(2)}</td>
+              <td style={{ color: getCurrentProfit(item.name) >= 0 ? 'green' : 'red' }}>
+                {getCurrentProfit(item.name) >= 0 ? `+${parseFloat(getCurrentPrice(item.name)).toFixed(2)}%` : `${parseFloat(getCurrentProfit(item.name)).toFixed(2)}%`}
               </td>
-              <td style={{ color: item.performance >= 0 ? 'green' : 'red' }}>
-                {item.performance >= 0 ?
-                  `+$${((item.price - item.price / (1 + item.performance / 100)) * item.quantity).toFixed(2)}` :
-                  `-$${Math.abs(((item.price - item.price / (1 + item.performance / 100)) * item.quantity)).toFixed(2)}`
-                }
+              <td style={{ color: getCurrentProfit(item.name) >= 0 ? 'green' : 'red' }}>
+              {getCurrentProfit(item.name) >= 0 ?
+  `+$${((item.price * (getCurrentProfit(item.name) / 100)) * item.quantity).toFixed(2)}` :
+  `-$${Math.abs(((item.price * (getCurrentProfit(item.name) / 100)) * item.quantity)).toFixed(2)}`
+}
               </td>
               <td className='tdBtns'>
                 <button className='comprarCedearsBtn' onClick={() => handleBuyClick(item)}><AddIcon /> Comprar</button>
