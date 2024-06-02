@@ -197,6 +197,13 @@ const CEDEARTable = () => {
     setSearchValue(e.target.value);
   };
 
+  const handleSellClick = (cedear) => {
+    setSelectedCedearForSell(cedear);
+    setSellModalOpen(true);
+  };
+
+  
+
   return (
     <div className='practicaCedears-container'>
       <div className='searchCedears'>
