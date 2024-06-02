@@ -6,18 +6,18 @@ export default function BuyModal({ open, onClose, cedear }) {
     const handleBuy = () => {
         // Obtén la lista actual de cedears del localStorage
         let cedears = JSON.parse(localStorage.getItem('cedears')) || [];
+        let historyCedears = JSON.parse(localStorage.getItem('historyCedears')) || [];
 
         // Si el primer cedear es "Ninguno", elimínalo
-        if (cedears[0].name === 'Ninguno') {
+        if (cedears[0] && cedears[0].name === 'Ninguno') {
             cedears.shift();
         }
 
         // Busca el cedear en la lista
         let cedearIndex = cedears.findIndex(c => c.name === cedear['01. symbol']);
 
-        // Asegúrate de que cedear['04. current price'] y quantity son números
-        // Elimina el signo de dólar del precio y conviértelo a un número
-        const cedearPrice = parseFloat(cedear['04. current price'].replace('$', ''));
+        // Asegúrate de que quantity es un número
+        const cedearPrice = cedear['04. current price'];
         const quantityNumber = parseInt(quantity);
 
         const performance = (Math.random() * 4 - 2).toFixed(2);
@@ -35,32 +35,35 @@ export default function BuyModal({ open, onClose, cedear }) {
                 price: cedearPrice, 
                 performance: performance 
             });
-        
-            console.log(cedears);
         }
 
         // Guarda la lista actualizada en el localStorage
         localStorage.setItem('cedears', JSON.stringify(cedears));
 
+        // Actualiza el total y el saldo
         const total = parseFloat(localStorage.getItem('total')) || 0;
         const saldo = parseFloat(localStorage.getItem('saldo')) || 200000; // Asume un saldo inicial de 200000
+        const totalPurchasePrice = quantity * cedearPrice;
         const newTotal = total + totalPurchasePrice;
         const newSaldo = saldo - totalPurchasePrice;
 
         localStorage.setItem('total', newTotal.toString());
         localStorage.setItem('saldo', newSaldo.toString());
 
+        // Cierra el modal y reinicia la cantidad
         onClose();
         setQuantity(1);
         window.location.reload();
     };
 
-
     if (!open) {
         return null;
     }
-    const totalPurchasePrice = quantity * parseFloat(cedear['04. current price'].replace('$', '').replace(',', ''));
+
+    const cedearPrice = cedear['04. current price'];
+    const totalPurchasePrice = quantity * cedearPrice;
     const saldoCheck = parseFloat(localStorage.getItem('saldo')) || 200000;
+
     return (
         <div className="modal-comprar">
             <div className="modalComprar-content">
@@ -68,14 +71,14 @@ export default function BuyModal({ open, onClose, cedear }) {
                     Comprar: {cedear['01. symbol']}
                 </h2>
                 <p style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-                    Precio por unidad: {cedear['04. current price']}
+                    Precio por unidad: ${cedearPrice.toFixed(2)}
                 </p>
                 <p style={{ color: 'green', fontSize: "1.3rem" }}>
-                    Total: ${quantity * cedear['04. current price'].replace('$', '').replace(',', '')}
+                    Total: ${totalPurchasePrice.toFixed(2)}
                 </p>
                 <div className="input-group">
                     <button className='restar' onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
-                    <input type="number" min='1' value={quantity} onChange={e => setQuantity(e.target.value)} />
+                    <input type="number" min='1' value={quantity} onChange={e => setQuantity(parseInt(e.target.value))} />
                     <button className='sumar' onClick={() => setQuantity(quantity + 1)}>+</button>
                 </div>
                 <div className='buttons-comprar'>

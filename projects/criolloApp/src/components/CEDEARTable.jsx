@@ -44,11 +44,6 @@ const CEDEARTable = () => {
       );
 
       const responses = await Promise.all(requests);
-      responses.forEach(response => {
-        if (response.data) {
-          console.log(response.data); // Registra la respuesta de la API en la consola
-        }
-      });
 
       let data = responses.map(response => {
         if (response.data && response.data['Global Quote']) {
@@ -57,12 +52,11 @@ const CEDEARTable = () => {
             '01. symbol': quote['01. symbol'],
             '02. description': 'Description for ' + quote['01. symbol'], // Deberías obtener la descripción de alguna parte
             '03. conversion ratio': 1, // Deberías obtener la ratio de conversión de alguna parte
-            '04. current price': '$' + quote['05. price'],
+            '04. current price': parseFloat(quote['05. price']),
             '05. commission': '2%', // Deberías calcular la comisión de alguna manera
-            '06. total cost': '$' + (quote['05. price'] * 1.02).toFixed(2) // Suponiendo que la comisión es del 2%
+            '06. total cost': (parseFloat(quote['05. price']) * 1.02).toFixed(2) // Suponiendo que la comisión es del 2%
           };
         } else {
-          console.error('response.data is undefined or does not have a property Global Quote');
           return null;
         }
       }).filter(item => item !== null);
@@ -70,26 +64,23 @@ const CEDEARTable = () => {
       // Si no hay datos, establece valores predeterminados
       if (data.length === 0) {
         data = [
-          { '01. symbol': 'AAPL', '02. description': 'Apple Inc.', '03. conversion ratio': 1, '04. current price': '$150', '05. commission': '2%', '06. total cost': '$153.00' },
-          { '01. symbol': 'IBM', '02. description': 'International Business Machines', '03. conversion ratio': 1, '04. current price': '$250', '05. commission': '2%', '06. total cost': '$255.00' },
-          { '01. symbol': 'TSLA', '02. description': 'Tesla Inc.', '03. conversion ratio': 1, '04. current price': '$350', '05. commission': '2%', '06. total cost': '$357.00' },
-          { '01. symbol': 'GOOGL', '02. description': 'Alphabet Inc.', '03. conversion ratio': 1, '04. current price': '$2000', '05. commission': '2%', '06. total cost': '$2040.00' },
-          { '01. symbol': 'AMZN', '02. description': 'Amazon.com Inc.', '03. conversion ratio': 1, '04. current price': '$3000', '05. commission': '2%', '06. total cost': '$3060.00' },
-          { '01. symbol': 'MSFT', '02. description': 'Microsoft Corporation', '03. conversion ratio': 1, '04. current price': '$500', '05. commission': '2%', '06. total cost': '$510.00' },
-          { '01. symbol': 'FB', '02. description': 'Meta Platforms Inc.', '03. conversion ratio': 1, '04. current price': '$300', '05. commission': '2%', '06. total cost': '$306.00' },
-          { '01. symbol': 'NVDA', '02. description': 'NVIDIA Corporation', '03. conversion ratio': 1, '04. current price': '$700', '05. commission': '2%', '06. total cost': '$714.00' },
-          { '01. symbol': 'PYPL', '02. description': 'PayPal Holdings Inc.', '03. conversion ratio': 1, '04. current price': '$200', '05. commission': '2%', '06. total cost': '$204.00' },
-          { '01. symbol': 'INTC', '02. description': 'Intel Corporation', '03. conversion ratio': 1, '04. current price': '$50', '05. commission': '2%', '06. total cost': '$51.00' }
+          { '01. symbol': 'AAPL', '02. description': 'Apple Inc.', '03. conversion ratio': 1, '04. current price': 150, '05. commission': '2%', '06. total cost': 153.00 },
+          { '01. symbol': 'IBM', '02. description': 'International Business Machines', '03. conversion ratio': 1, '04. current price': 250, '05. commission': '2%', '06. total cost': 255.00 },
+          { '01. symbol': 'TSLA', '02. description': 'Tesla Inc.', '03. conversion ratio': 1, '04. current price': 350, '05. commission': '2%', '06. total cost': 357.00 },
+          { '01. symbol': 'GOOGL', '02. description': 'Alphabet Inc.', '03. conversion ratio': 1, '04. current price': 2000, '05. commission': '2%', '06. total cost': 2040.00 },
+          { '01. symbol': 'AMZN', '02. description': 'Amazon.com Inc.', '03. conversion ratio': 1, '04. current price': 3000, '05. commission': '2%', '06. total cost': 3060.00 },
+          { '01. symbol': 'MSFT', '02. description': 'Microsoft Corporation', '03. conversion ratio': 1, '04. current price': 500, '05. commission': '2%', '06. total cost': 510.00 },
+          { '01. symbol': 'FB', '02. description': 'Meta Platforms Inc.', '03. conversion ratio': 1, '04. current price': 300, '05. commission': '2%', '06. total cost': 306.00 },
+          { '01. symbol': 'NVDA', '02. description': 'NVIDIA Corporation', '03. conversion ratio': 1, '04. current price': 700, '05. commission': '2%', '06. total cost': 714.00 },
+          { '01. symbol': 'PYPL', '02. description': 'PayPal Holdings Inc.', '03. conversion ratio': 1, '04. current price': 200, '05. commission': '2%', '06. total cost': 204.00 },
+          { '01. symbol': 'INTC', '02. description': 'Intel Corporation', '03. conversion ratio': 1, '04. current price': 50, '05. commission': '2%', '06. total cost': 51.00 }
         ];
       }
 
-      // Generar rendimientos aleatorios y agregarlos a los datos
-      const dataWithPerformance = data.map(item => {
-        const performance = (Math.random() * 2 - 1).toFixed(2); // Genera un rendimiento entre -1% y 1%
-        return { ...item, performance };
-      });
+      setInitialDataInLocalStorage(data);
 
-      setCedears(dataWithPerformance);
+      const dataWithProfit = calculateProfit(data);
+      setCedears(dataWithProfit);
       setLoading(false);
 
     } catch (error) {
@@ -99,12 +90,61 @@ const CEDEARTable = () => {
     }
   };
 
+  const setInitialDataInLocalStorage = (data) => {
+    const storedHistory = localStorage.getItem('historyCedears');
+    const storedCedears = localStorage.getItem('actualCedears');
+
+    if (!storedHistory) {
+      localStorage.setItem('historyCedears', JSON.stringify(data));
+    }
+
+    if (!storedCedears) {
+      localStorage.setItem('actualCedears', JSON.stringify(data));
+    }
+  };
+
+  const updateCedearPrices = () => {
+    const storedCedears = JSON.parse(localStorage.getItem('actualCedears'));
+
+    // Hacer una copia de actualCedears en historyCedears
+    localStorage.setItem('historyCedears', JSON.stringify(storedCedears));
+
+    const updatedCedears = storedCedears.map(cedear => {
+      const randomChange = (Math.random() * 10 - 5).toFixed(2);
+      const updatedPrice = parseFloat(cedear['04. current price']) + parseFloat(randomChange);
+      return { ...cedear, '04. current price': updatedPrice };
+    });
+
+    localStorage.setItem('actualCedears', JSON.stringify(updatedCedears));
+
+    const updatedDataWithProfit = calculateProfit(updatedCedears);
+    setCedears(updatedDataWithProfit);
+  };
+
+  const calculateProfit = (currentCedears) => {
+    const historyCedears = JSON.parse(localStorage.getItem('historyCedears'));
+
+    return currentCedears.map(cedear => {
+      const historyCedear = historyCedears.find(hCedear => hCedear['01. symbol'] === cedear['01. symbol']);
+      if (historyCedear) {
+        const profit = (((cedear['04. current price'] - historyCedear['04. current price']) / historyCedear['04. current price']) * 100).toFixed(2);
+        return { ...cedear, profit };
+      }
+      return { ...cedear, profit: 0 };
+    });
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
 
   useEffect(() => {
-    const storedCedears = localStorage.getItem('cedears');
+    const intervalId = setInterval(updateCedearPrices, 60000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    const storedCedears = localStorage.getItem('actualCedears');
     if (storedCedears) {
       setPortfolio(JSON.parse(storedCedears));
     }
@@ -132,15 +172,29 @@ const CEDEARTable = () => {
     setPageCartera(pageNumber);
   };
 
-  const handleSellClick = (cedear) => {
-    setSelectedCedearForSell(cedear);
-    setSellModalOpen(true);
-    console.log('Vender:', cedear);
-  };
+  const paginatedCedears = filteredCedears.slice(page * itemsPerPage, (page + 1) * itemsPerPage);
+  const paginatedPortfolio = filteredPortfolio.slice(pageCartera * itemsPerPage, (pageCartera + 1) * itemsPerPage);
 
   const handleBuyClick = (cedear) => {
     setSelectedCedear(cedear);
     setBuyModalOpen(true);
+  };
+
+  const handleCloseBuyModal = () => {
+    setBuyModalOpen(false);
+  };
+
+  const handleOpenSellModal = (cedear) => {
+    setSelectedCedearForSell(cedear);
+    setSellModalOpen(true);
+  };
+
+  const handleCloseSellModal = () => {
+    setSellModalOpen(false);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
   };
 
   return (
@@ -243,17 +297,17 @@ const CEDEARTable = () => {
           </TableRow>
         </TableHead>
         <tbody>
-          {filteredCedears.slice(page * itemsPerPage, (page + 1) * itemsPerPage).map((cedear, index) => (
+          {paginatedCedears.slice(page * itemsPerPage, (page + 1) * itemsPerPage).map((cedear, index) => (
             <tr key={index}>
               <td>
                 {cedear['01. symbol']}{" "}
-                <span style={{ color: cedear.performance > 0 ? 'green' : 'red' }}>
-                  {cedear.performance}%
+                <span style={{ color: cedear.profit > 0 ? 'green' : 'red' }}>
+                  {cedear.profit}%
                 </span>
               </td>
               <td>{cedear['02. description']}</td>
               <td>{cedear['03. conversion ratio']}</td>
-              <td>{cedear['04. current price']}</td>
+              <td>{parseFloat(cedear['04. current price']).toFixed(2)}</td>
               <td>{cedear['05. commission']}</td>
               <td>{cedear['06. total cost']}</td>
               <td>

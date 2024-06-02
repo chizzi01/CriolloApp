@@ -260,13 +260,18 @@
 
 .card-container {
   position: sticky;
-  left: 50vw;
-  transform: translate(-50%, -50%);
+  top: 50%; /* Este valor dependerá de tu diseño */
+  transform: translateY(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 800px;
+}
+
+#comunidad{
+  display: grid;
+  place-items: center;
 }
 
 .card {

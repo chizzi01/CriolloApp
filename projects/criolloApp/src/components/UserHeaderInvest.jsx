@@ -12,8 +12,8 @@ import ResetModal from './ResetModal';
 
 const UserHeaderInvest = () => {
 
-    const totalInv = parseFloat(localStorage.getItem('total')) || 0;
-    const saldoInv = parseFloat(localStorage.getItem('saldo')) || 0;
+    const totalInv = parseFloat(localStorage.getItem('total')).toFixed(2) || 0;
+    const saldoInv = parseFloat(localStorage.getItem('saldo')).toFixed(2) || 0;
 
     if (totalInv === 0) {
         localStorage.setItem('total', '0');

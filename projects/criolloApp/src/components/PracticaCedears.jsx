@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import '../App.css';
 import UserHeaderInvest from './UserHeaderInvest.jsx';
 import CEDEARTable from './CEDEARTable.jsx';
+import CEDEARTableWH from './CEDEARTableWH.jsx';
 
 
 function PracticaCedears() {
