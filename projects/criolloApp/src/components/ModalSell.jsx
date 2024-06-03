@@ -3,51 +3,52 @@ import React, { useState } from 'react';
 export default function SellModal({ open, onClose, cedear }) {
     const [quantity, setQuantity] = useState(1);
 
-    const handleSell = () => {
-        let cedears = JSON.parse(localStorage.getItem('cedears')) || [];
+        const handleSell = () => {
+            let portfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
+            let cedearIndex = portfolio.findIndex(c => c['01. symbol'] === cedear['01. symbol']);
 
-        let cedearIndex = cedears.findIndex(c => c.name === cedear.name);
+            const quantityNumber = parseInt(quantity, 10);
+            const totalSalePrice = cedear['04. current price'] * quantityNumber;
 
-        const quantityNumber = parseInt(quantity);
+            if (cedearIndex !== -1 && portfolio[cedearIndex].quantity >= quantityNumber) {
+                portfolio[cedearIndex].quantity -= quantityNumber;
 
-        const totalSalePrice = cedear.price * quantityNumber;
+                if (portfolio[cedearIndex].quantity === 0) {
+                    portfolio.splice(cedearIndex, 1);
+                }
 
+                localStorage.setItem('portfolio', JSON.stringify(portfolio));
 
-        if (cedearIndex !== -1 && cedears[cedearIndex].quantity >= quantityNumber) {
-            cedears[cedearIndex].quantity -= quantityNumber;
+                const total = parseFloat(localStorage.getItem('total')) || 0;
+                const saldo = parseFloat(localStorage.getItem('saldo')) || 200000;
+                const newTotal = total - totalSalePrice;
+                const newSaldo = saldo + totalSalePrice;
 
-            if (cedears[cedearIndex].quantity === 0) {
-                cedears.splice(cedearIndex, 1);
+                localStorage.setItem('total', newTotal.toString());
+                localStorage.setItem('saldo', newSaldo.toString());
+
+                onClose();
+                setQuantity(1);
+                window.location.reload();
+            } else {
+                alert('No tienes suficientes CEDEARs para vender');
             }
-        } else {
-            alert('No tienes suficientes cedears para vender');
-            return;
-        }
+        };
 
-        localStorage.setItem('cedears', JSON.stringify(cedears));
-
-        const total = parseFloat(localStorage.getItem('total')) || 0;
-        const saldo = parseFloat(localStorage.getItem('saldo')) || 200000;
-        const newTotal = total - totalSalePrice;
-        const newSaldo = saldo + totalSalePrice;
-
-        localStorage.setItem('total', newTotal.toString());
-        localStorage.setItem('saldo', newSaldo.toString());
-
-        onClose();
-        setQuantity(1);
-        window.location.reload();
-    };
     if (!open) {
         return null;
     }
-    const precioPorUnidad =(cedear.price * (1 + cedear.performance / 100)).toFixed(2)
 
-    let totalSalePrice = 0;
-    if (cedear && cedear.price) {
-        totalSalePrice = (quantity * parseFloat(precioPorUnidad)).toFixed(2);
-    }
+    const actualCedears = JSON.parse(localStorage.getItem('actualCedears')) || [];
 
+    const getCurrentPrice = (symbol) => {
+        const cedear = actualCedears.find(c => c['01. symbol'] === symbol);
+        return cedear ? cedear['04. current price'] : 0;
+      };
+
+
+    const precioPorUnidad = getCurrentPrice(cedear.name);
+    const totalSalePrice = parseFloat(quantity * parseFloat(precioPorUnidad)).toFixed(2);
     const saldoCheck = parseFloat(localStorage.getItem('saldo')) || 200000;
 
     return (
@@ -64,15 +65,15 @@ export default function SellModal({ open, onClose, cedear }) {
                 </p>
                 <div className="input-group">
                     <button className='restar' onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
-                    <input type="number" min='1' value={quantity} onChange={e => setQuantity(e.target.value)} />
+                    <input type="number" min='1' value={quantity} onChange={e => setQuantity(parseInt(e.target.value, 10))} />
                     <button className='sumar' onClick={() => setQuantity(quantity + 1)}>+</button>
                 </div>
                 <div className='buttons-comprar'>
                     <button onClick={onClose}>Cancelar</button>
                     <button
                         onClick={handleSell}
-                        style={{ backgroundColor: totalSalePrice > saldoCheck ? "#999999" : "#90ee90", color: "rgb(0, 90, 12)" }}
-                        disabled={totalSalePrice > saldoCheck}
+                        style={{ backgroundColor: parseFloat(totalSalePrice) > saldoCheck ? "#999999" : "#90ee90", color: "rgb(0, 90, 12)" }}
+                        disabled={parseFloat(totalSalePrice) > saldoCheck}
                     >
                         Vender
                     </button>
@@ -80,4 +81,5 @@ export default function SellModal({ open, onClose, cedear }) {
             </div>
         </div>
     );
+
 }
