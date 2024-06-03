@@ -27,11 +27,13 @@ const CEDEARTable = () => {
   const [portfolio, setPortfolio] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCedearForSell, setSelectedCedearForSell] = useState(null);
+  const [paginatedCedears, setPaginatedCedears] = useState([]);
+  const [paginatedPortfolio, setPaginatedPortfolio] = useState([]);
   const [sellModalOpen, setSellModalOpen] = useState(false);
   const [actualCedears, setActualCedears] = useState([]);
   const itemsPerPage = 6;
 
-  
+
   const fetchData = async () => {
     try {
       let data = [
@@ -46,64 +48,76 @@ const CEDEARTable = () => {
         { '01. symbol': 'PYPL', '02. description': 'PayPal Holdings Inc.', '03. conversion ratio': 1, '04. current price': 200, '05. commission': '2%', '06. total cost': 204.00 },
         { '01. symbol': 'INTC', '02. description': 'Intel Corporation', '03. conversion ratio': 1, '04. current price': 50, '05. commission': '2%', '06. total cost': 51.00 }
       ];
+      const setInitialDataInLocalStorage = (data) => {
+        const storedHistory = localStorage.getItem('historyCedears');
+        const storedCedears = localStorage.getItem('actualCedears');
 
-      setInitialDataInLocalStorage(data);
+        if (!storedHistory) {
+          localStorage.setItem('historyCedears', JSON.stringify(data));
+        }
 
+        if (!storedCedears) {
+          localStorage.setItem('actualCedears', JSON.stringify(data));
+        }
+        else {
+          const updatedDataWithProfit = calculateProfit(data);
+          setCedears(updatedDataWithProfit);
+          setActualCedears(updatedDataWithProfit);
+        }
+      };
+      if (!localStorage.getItem('actualCedears') || !localStorage.getItem('historyCedears')) {
+        setInitialDataInLocalStorage(data);
+      }
+      else {
+        data = JSON.parse(localStorage.getItem('actualCedears'));
+      }
       const dataWithProfit = calculateProfit(data);
       setCedears(dataWithProfit);
       setLoading(false);
-
     } catch (error) {
       console.error('Error fetching data:', error);
       setError(error);
       setLoading(false);
     }
   };
-  
-  const setInitialDataInLocalStorage = (data) => {
-    const storedHistory = localStorage.getItem('historyCedears');
-    const storedCedears = localStorage.getItem('actualCedears');
-
-    if (!storedHistory) {
-      localStorage.setItem('historyCedears', JSON.stringify(data));
-    }
-
-    if (!storedCedears) {
-      localStorage.setItem('actualCedears', JSON.stringify(data));
-    }
+  const calculateTotalInvested = (symbol, quantity) => {
+    const cedear = actualCedears.find(c => c['01. symbol'] === symbol);
+    return cedear ? parseFloat(cedear['04. current price']) * quantity : 0;
   };
+  
+  
+
 
   const updateCedearPrices = () => {
     const storedCedears = JSON.parse(localStorage.getItem('actualCedears'));
-
+  
     // Hacer una copia de actualCedears en historyCedears
     localStorage.setItem('historyCedears', JSON.stringify(storedCedears));
-
+  
     const updatedCedears = storedCedears.map(cedear => {
       const randomChange = (Math.random() * 10 - 5).toFixed(2);
       const updatedPrice = parseFloat(cedear['04. current price']) + parseFloat(randomChange);
       return { ...cedear, '04. current price': updatedPrice };
     });
-
+  
     localStorage.setItem('actualCedears', JSON.stringify(updatedCedears));
-
+  
     const updatedDataWithProfit = calculateProfit(updatedCedears);
     setCedears(updatedDataWithProfit);
     setActualCedears(updatedDataWithProfit);
   };
-
+  
+  
+  
   const calculateProfit = (currentCedears) => {
     const historyCedears = JSON.parse(localStorage.getItem('historyCedears'));
   
     const updatedCedears = currentCedears.map(cedear => {
       const historyCedear = historyCedears.find(hCedear => hCedear['01. symbol'] === cedear['01. symbol']);
       if (historyCedear) {
-        let profit = (((cedear['04. current price'] - historyCedear['04. current price']) / historyCedear['04. current price']) * 100).toFixed(2);
-  
-        if (parseFloat(profit) === 0) {
-          cedear['04. current price'] = cedear['06. total cost'];
-          profit = (((cedear['04. current price'] - historyCedear['04. current price']) / historyCedear['04. current price']) * 100).toFixed(2);
-        }
+        const initialPrice = parseFloat(historyCedear['04. current price']);
+        const currentPrice = parseFloat(cedear['04. current price']);
+        let profit = (((currentPrice - initialPrice) / initialPrice) * 100).toFixed(2);
   
         return { ...cedear, profit };
       }
@@ -114,13 +128,47 @@ const CEDEARTable = () => {
   
     return updatedCedears;
   };
+  
+
+  const filteredPortfolio = portfolio.filter(item =>
+    item.name && item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  let filteredCedears = cedears.filter(cedear =>
+    cedear['01. symbol'].toLowerCase().includes(searchValue.toLowerCase()) ||
+    cedear['02. description'].toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+
+  const totalPages = Math.ceil(filteredCedears.length / itemsPerPage);
+  const totalPagesCartera = Math.ceil(filteredPortfolio.length / itemsPerPage);
+
+
+
+  const handlePageClick = (pageNumber) => {
+    setPage(pageNumber);
+    const startCedearIndex = pageNumber * itemsPerPage;
+    const endCedearIndex = Math.min((pageNumber + 1) * itemsPerPage, filteredCedears.length);
+    const newPaginatedCedears = filteredCedears.slice(startCedearIndex, endCedearIndex);
+    setPaginatedCedears(newPaginatedCedears);
+  };
+
+  const handlePageCarteraClick = (pageNumber) => {
+    setPageCartera(pageNumber);
+    const startPortfolioIndex = pageNumber * itemsPerPage;
+    const endPortfolioIndex = Math.min((pageNumber + 1) * itemsPerPage, filteredPortfolio.length);
+    const newPaginatedPortfolio = filteredPortfolio.slice(startPortfolioIndex, endPortfolioIndex);
+    setPaginatedPortfolio(newPaginatedPortfolio);
+  };
+
+
 
   useEffect(() => {
     fetchData();
   }, []);
 
   useEffect(() => {
-    const intervalId = setInterval(updateCedearPrices, 60000);
+    const intervalId = setInterval(updateCedearPrices, 10000);
     return () => clearInterval(intervalId);
   }, []);
 
@@ -136,30 +184,22 @@ const CEDEARTable = () => {
     }
   }, []);
 
-  const filteredPortfolio = portfolio.filter(item =>
-    item.name && item.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
-  if (loading) return  <div>Cargando...</div>;
+  useEffect(() => {
+    handlePageClick(page); // Añadir esta línea
+  }, [cedears, page]);
+
+  useEffect(() => {
+    handlePageCarteraClick(pageCartera); // Añadir esta línea
+  }, [portfolio, pageCartera]);
+
+
+
+  if (loading) return <div>Cargando...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  let filteredCedears = cedears.filter(cedear =>
-    cedear['01. symbol'].toLowerCase().includes(searchValue.toLowerCase()) ||
-    cedear['02. description'].toLowerCase().includes(searchValue.toLowerCase())
-  );
-  const totalPages = Math.ceil(filteredCedears.length / itemsPerPage);
-  const totalPagesCartera = Math.ceil(filteredPortfolio.length / itemsPerPage);
 
-  const handlePageClick = (pageNumber) => {
-    setPage(pageNumber);
-  };
 
-  const handlePageCarteraClick = (pageNumber) => {
-    setPageCartera(pageNumber);
-  };
-
-  const paginatedCedears = filteredCedears.slice(page * itemsPerPage, (page + 1) * itemsPerPage);
-  const paginatedPortfolio = filteredPortfolio.slice(pageCartera * itemsPerPage, (pageCartera + 1) * itemsPerPage);
 
   const handleBuyClick = (cedear) => {
     setSelectedCedear(cedear);
@@ -188,6 +228,7 @@ const CEDEARTable = () => {
     setSellModalOpen(true);
   };
 
+  // console.log('paginatedCedears2:', paginatedCedears);
 
 
   const getCurrentPrice = (symbol) => {
@@ -201,7 +242,6 @@ const CEDEARTable = () => {
 
   };
 
-  console.log(getCurrentProfit('AAPL'));
 
   return (
     <div className='practicaCedears-container'>
@@ -303,7 +343,8 @@ const CEDEARTable = () => {
           </TableRow>
         </TableHead>
         <tbody>
-          {paginatedCedears.slice(page * itemsPerPage, (page + 1) * itemsPerPage).map((cedear, index) => (
+          {paginatedCedears.map((cedear, index) => (
+
             <tr key={index}>
               <td>
                 {cedear['01. symbol']}{" "}
@@ -337,6 +378,7 @@ const CEDEARTable = () => {
             {index + 1}
           </button>
         ))}
+
         <button onClick={() => handlePageClick(page + 1)} disabled={page === totalPages - 1} className='flecha der' style={{ backgroundColor: "#90ee90" }}>
           <img src={flecha} alt="" />
         </button>
