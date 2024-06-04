@@ -9,5 +9,10 @@
   <body>
     <div id="root"></div>
     <script type="module" src="./src/main.jsx"></script>
+    <script>
+      // Toma la ruta actual y la convierte en una ruta relativa a la raíz
+      const path = '/' + location.pathname.split('/')[1] + '/index.html';
+      location.replace(path);
+    </script>
   </body>
 </html>
