@@ -7,10 +7,14 @@
 }
 
 *:focus {
-  outline: none !important;;
+  outline: none !important;
+  ;
 }
 
-button:focus, input:focus, textarea:focus, select:focus {
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
   outline: none !important;
 }
 
@@ -264,7 +268,8 @@ button:focus, input:focus, textarea:focus, select:focus {
 
 .card-container {
   position: sticky;
-  top: 50%; /* Este valor dependerá de tu diseño */
+  top: 50%;
+  /* Este valor dependerá de tu diseño */
   transform: translateY(-50%);
   display: flex;
   justify-content: center;
@@ -273,7 +278,7 @@ button:focus, input:focus, textarea:focus, select:focus {
   max-width: 800px;
 }
 
-#comunidad{
+#comunidad {
   display: grid;
   place-items: center;
 }
@@ -666,7 +671,7 @@ button:focus, input:focus, textarea:focus, select:focus {
   filter: grayscale(100%);
 }
 
-.seccionesContainer{
+.seccionesContainer {
   position: relative;
   width: 300px;
   top: 42%;
@@ -675,7 +680,7 @@ button:focus, input:focus, textarea:focus, select:focus {
   z-index: 10;
 }
 
-.secciones{
+.secciones {
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -684,7 +689,7 @@ button:focus, input:focus, textarea:focus, select:focus {
   z-index: 10;
 }
 
-.seccion{
+.seccion {
   border-radius: 10px;
   padding: 10px;
   color: #ffffff;
@@ -692,7 +697,7 @@ button:focus, input:focus, textarea:focus, select:focus {
   cursor: pointer;
 }
 
-.seccion:hover{
+.seccion:hover {
   background-color: #7dfa6d;
 }
 
@@ -769,14 +774,17 @@ button:focus, input:focus, textarea:focus, select:focus {
 
 
 .imagenCentral {
-  position: absolute; /* Agrega esta línea */
+  position: absolute;
+  /* Agrega esta línea */
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  top: 0; /* Agrega esta línea */
-  left: 0; /* Agrega esta línea */
+  top: 0;
+  /* Agrega esta línea */
+  left: 0;
+  /* Agrega esta línea */
 }
 
 .imagenCentral img {
@@ -1416,6 +1424,182 @@ table td {
   width: 40px;
   height: 40px;
 }
+
+.cedear-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.cedear-header {
+  background-color: #f8f8f8;
+  padding-top: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-left button,
+.header-right button {
+  margin: 0 5px;
+}
+
+.header-left button {
+  background-color: #757575;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.header-left button:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.header-right button {
+  background-color: #757575;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.header-right button:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.progress-bar {
+  position: relative;
+  width: 50%;
+  background-color: #e0e0e0;
+  height: 5px;
+  align-self: center;
+}
+
+.mateCohete {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-100%);
+}
+
+.progress-bar  img{
+  width: 100px;
+  height: 100px;
+
+}
+
+.progress {
+  height: 100%;
+  background-color: #e64a19;
+  border-radius: 20px;
+}
+
+.pageButtons {
+  margin: 20px;
+  background-color: #005f37;
+  padding: 10px;
+
+}
+
+.cedear-main {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cedear-main h1 {
+  color: #e64a19;
+  text-align: center;
+}
+
+.cedear-main strong {
+  color: #e64a19;
+}
+
+.cedear-main ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.listaCedears {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 50px;
+  width: 50%;
+}
+
+
+.cedear-aside {
+  background-color: #e9e9e9;
+  color: #fff;
+  padding: 20px;
+}
+
+.aside-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aside-section {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.aside-section p {
+  margin: 0;
+}
+
+.cedear-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f8f8;
+}
+
+.page-indicator {
+  display: flex;
+  gap: 10px;
+}
+
+.page-number {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.page-number.active {
+  background-color: #e64a19;
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 
 @keyframes float {
   0% {

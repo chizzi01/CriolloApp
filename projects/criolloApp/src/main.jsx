@@ -7,6 +7,7 @@ import Novedades from './components/Novedades'; // Asegúrate de que la ruta de 
 import InversionesComponent from './components/Inversiones';
 import PracticaCedears from './components/PracticaCedears';
 import Practica from './components/Practica';
+import Tutoriales from './components/Tutoriales';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,6 +22,7 @@ root.render(
         <Route path="/inversiones" element={<InversionesComponent />} />
         <Route path="/practicas" element={<Practica />} />
         <Route path="/cedears" element={<PracticaCedears />} />
+        <Route path="/tutoriales" element={<Tutoriales />} />
         {/* <Route path="*" element={<h1>404: Página no encontrada</h1>} /> */}
       </Routes>
     </HashRouter>
