@@ -120,7 +120,7 @@ export default function DrawerAppBar({ window, currentSection }) {
                 disableRipple
                 onMouseEnter={(event) => { handlePopoverOpen(event); }}
                 style={{outline: 'none'}}
-              ><a className={currentSection === 'tutoriales-section' ? 'active' : ''}  >{IniText}</a>  <ExpandMoreIcon
+              ><p className={currentSection === 'tutoriales-section' ? 'active' : ''}  >{IniText}</p>  <ExpandMoreIcon
                   style={{
                     color: '#077647',
                     transform: anchorEl ? 'rotate(180deg)' : 'rotate(0deg)',
@@ -129,15 +129,15 @@ export default function DrawerAppBar({ window, currentSection }) {
                 /></Button>
             </Link>
             <Link to="/practicas">
-              <Button style={{outline: 'none'}} disableRipple><a className={currentSection === 'practicas-section' ? 'active' : ''}  >{ExpText}</a></Button>
+              <Button style={{outline: 'none'}} disableRipple><p className={currentSection === 'practicas-section' ? 'active' : ''}  >{ExpText}</p></Button>
             </Link>
             <Link to="/novedades">
-              <Button  style={{outline: 'none'}} disableRipple><a className={currentSection === 'novedades-section' ? 'active' : ''}>
+              <Button  style={{outline: 'none'}} disableRipple><p className={currentSection === 'novedades-section' ? 'active' : ''}>
                 {DevText}
-              </a> </Button>
+              </p> </Button>
             </Link>
             <Link to="/comunidad">
-              <Button  style={{outline: 'none'}} disableRipple><a className={currentSection === 'comunidad-section' ? 'active' : ''}  >{PortText}</a></Button>
+              <Button  style={{outline: 'none'}} disableRipple><p className={currentSection === 'comunidad-section' ? 'active' : ''}  >{PortText}</p></Button>
             </Link>
           </Box>
           <Box sx={{ display: { xs: 'none', md: 'flex', padding: 5 } }}>
@@ -188,7 +188,7 @@ export default function DrawerAppBar({ window, currentSection }) {
                 secondary: 'Explora oportunidades de inversión y aprende a hacer crecer tu dinero',
               },
             ].map((item, index) => (
-              <div className='list-card'>
+              <div key={index} className='list-card'>
                 <Link to="/inversiones">
                 <ListItem key={index} className="list-item">
                   {/* Aplica la clase CSS */}
