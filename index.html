@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image" href="https://chizzi01.github.io/CriolloApp/assets/CRIOLL-lg4Ml-sO.png" />
@@ -10,5 +10,14 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Comprueba si hay una redirección pendiente
+      if (sessionStorage.redirect) {
+        // Si es así, toma la ruta de la redirección
+        history.replaceState({}, "", sessionStorage.redirect);
+        // Y luego borra la redirección de sessionStorage
+        delete sessionStorage.redirect;
+      }
+    </script>
   </body>
 </html>
