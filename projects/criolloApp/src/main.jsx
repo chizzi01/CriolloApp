@@ -21,7 +21,7 @@ root.render(
         <Route path="/inversiones" element={<InversionesComponent />} />
         <Route path="/practicas" element={<Practica />} />
         <Route path="/cedears" element={<PracticaCedears />} />
-        <Route path="*" element={<h1>404: Página no encontrada</h1>} />
+        {/* <Route path="*" element={<h1>404: Página no encontrada</h1>} /> */}
       </Routes>
     </Router>
   </React.StrictMode>
