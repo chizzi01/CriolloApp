@@ -13,11 +13,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <Router basename="/CriolloApp">
-    <DrawerAppBar />
+    <Router basename="/CriolloApp/">
+      <DrawerAppBar />
       <Routes>
-        <Route path="/novedades" element={<Novedades />} />
         <Route path="/" element={<App />} />
+        <Route path="/novedades" element={<Novedades />} />
         <Route path="/inversiones" element={<InversionesComponent />} />
         <Route path="/practicas" element={<Practica />} />
         <Route path="/cedears" element={<PracticaCedears />} />
