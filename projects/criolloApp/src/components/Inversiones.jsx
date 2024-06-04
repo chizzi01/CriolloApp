@@ -57,8 +57,8 @@ export default function InversionesComponent() {
                 </div>
             </div>
             <div className='imagenCentral'>
-                    <img src={imagenes[indiceActual].src} alt='imagen central' />
-                </div>
+                <img src={imagenes[indiceActual].src} alt='imagen central' />
+            </div>
             <div className='textoInversiones-container'>
                 <h1 style={{ color: imagenes[indiceActual].color }}>INVERSIONES</h1>
                 <h2>{imagenes[indiceActual].titulo}</h2>
@@ -68,14 +68,13 @@ export default function InversionesComponent() {
 
             <div className='seccionesContainer'>
                 <div className='secciones'>
-                    <button className='seccion' style={{ backgroundColor: imagenes[0].color }} onClick={() => setIndiceActual(0)}>Bonos</button>
-                    <button className='seccion' style={{ backgroundColor: imagenes[1].color }} onClick={() => setIndiceActual(1)}>Cedears</button>
-                    <button className='seccion' style={{ backgroundColor: imagenes[2].color }} onClick={() => setIndiceActual(2)}>Cripto</button>
-                    <button className='seccion' style={{ backgroundColor: imagenes[3].color }} onClick={() => setIndiceActual(3)}>Letras</button>
-                    <button className='seccion' style={{ backgroundColor: imagenes[4].color }} onClick={() => setIndiceActual(4)}>Plazo Fijo</button>
+                    <button className='seccion' style={{ backgroundColor: indiceActual === 0 ? '#ffffff' : imagenes[0].color, color: indiceActual === 0 ? imagenes[0].color : '#ffffff' }} onClick={() => setIndiceActual(0)}>Bonos</button>
+                    <button className='seccion' style={{ backgroundColor: indiceActual === 1 ? '#ffffff' : imagenes[1].color, color: indiceActual === 1 ? imagenes[1].color : '#ffffff' }} onClick={() => setIndiceActual(1)}>Cedears</button>
+                    <button className='seccion' style={{ backgroundColor: indiceActual === 2 ? '#ffffff' : imagenes[2].color, color: indiceActual === 2 ? imagenes[2].color : '#ffffff' }} onClick={() => setIndiceActual(2)}>Cripto</button>
+                    <button className='seccion' style={{ backgroundColor: indiceActual === 3 ? '#ffffff' : imagenes[3].color, color: indiceActual === 3 ? imagenes[3].color : '#ffffff' }} onClick={() => setIndiceActual(3)}>Letras</button>
+                    <button className='seccion' style={{ backgroundColor: indiceActual === 4 ? '#ffffff' : imagenes[4].color, color: indiceActual === 4 ? imagenes[4].color : '#ffffff' }} onClick={() => setIndiceActual(4)}>Plazo Fijo</button>
                 </div>
             </div>
-
 
             <div className='flechas-container'>
                 <div className='flechas-align'>

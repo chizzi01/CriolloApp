@@ -7,7 +7,11 @@
 }
 
 *:focus {
-  outline: none;
+  outline: none !important;;
+}
+
+button:focus, input:focus, textarea:focus, select:focus {
+  outline: none !important;
 }
 
 ::-webkit-scrollbar {
