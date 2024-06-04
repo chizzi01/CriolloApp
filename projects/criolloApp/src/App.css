@@ -618,6 +618,7 @@
   background-color: #fff;
   border-radius: 50%;
   transform-origin: center bottom;
+  z-index: 5;
   /* Cambia el origen de la transformación */
 }
 
@@ -625,7 +626,7 @@
   position: absolute;
   top: 5%;
   transform: translate(-50%, -50%);
-  color: #227700;
+  color: #ffffff;
   font-size: 1.5em;
   /* padding-left: 100px; */
   width: 100%;
@@ -634,6 +635,7 @@
 .circle-image:nth-child(1) {
   left: 20%;
   top: 30%;
+  z-index: 5;
 }
 
 .circle-image:nth-child(2) {
@@ -660,23 +662,53 @@
   filter: grayscale(100%);
 }
 
+.seccionesContainer{
+  position: relative;
+  width: 300px;
+  top: 42%;
+  padding: 10px;
+  left: 2%;
+  z-index: 10;
+}
+
+.secciones{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  z-index: 10;
+}
+
+.seccion{
+  border-radius: 10px;
+  padding: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.seccion:hover{
+  background-color: #7dfa6d;
+}
+
 .textoInversiones-container {
   position: relative;
   width: 300px;
   height: 300px;
-  top: 50%;
+  top: 40%;
   padding: 10px;
   left: 2%;
 }
 
 .textoInversiones-container h1 {
   color: #FFC76F;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .textoInversiones-container h2 {
   color: #3b3b3b;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .textoInversiones-container p {
@@ -731,18 +763,31 @@
   outline: none;
 }
 
+
 .imagenCentral {
+  position: absolute; /* Agrega esta línea */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0; /* Agrega esta línea */
+  left: 0; /* Agrega esta línea */
+}
+
+.imagenCentral img {
   position: relative;
-  text-align: center;
   z-index: 1;
-  top: 5%;
+  width: 300px;
+  height: 300px;
 }
 
 .flechas-container {
   position: relative;
   width: 100%;
-  bottom: 20%;
+  /* bottom: 40%; */
   z-index: 1;
+  top: 20%;
 }
 
 .flechas-align {
@@ -793,8 +838,15 @@ button.flecha:focus {
 .eslogan-container {
   position: relative;
   text-align: center;
+  font-size: 1.5rem;
+  top: 25%;
+  width: 100%;
+}
+
+.eslogan-container h2 {
+  font-weight: bold;
   font-size: 1.5em;
-  bottom: 10%;
+  margin-bottom: 20px;
 }
 
 .imagenInversiones {
