@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import mateCohete from '../assets/mateConCohete.png';
+import choose from '../assets/choose.png';
 import '../App.css';
 
 export default function Tutoriales() {
@@ -39,21 +40,33 @@ export default function Tutoriales() {
         {page === 1 && (
           <>
             <h1>¿Qué es un CEDEAR?</h1>
-            <p><strong>CEDEAR</strong> significa CErificados de DEpósito ARgentinos</p>
-            <p>
-              Este <strong>instrumento de inversión</strong> es un certificado que representa una cierta
-              cantidad de <strong>acciones</strong> o valores que no se venden públicamente ni se cotizan
-              en el mercado argentino.
-            </p>
+            <img className='logo animationCedear' src={"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tesla_logo.png/1200px-Tesla_logo.png"} alt="Tesla" style={{ position: 'absolute', top: '50%', left: '5%', width: '100px' ,animationDuration: `${Math.random() * 5 + 5}s` }} />
+            <img className='logo animationCedear' src={"https://guiaimpresion.com/wp-content/uploads/2022/12/4-1.png"} alt="MercadoLibre" style={{ position: 'absolute', top: '30%', left: '20%', width: '80px',animationDuration: `${Math.random() * 5 + 5}s` }} />
+            <img className='logo animationCedear' src={"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png"} alt="Google" style={{ position: 'absolute', top: '70%', left: '60%', width: '120px',animationDuration: `${Math.random() * 5 + 5}s` }} />
+            <img className='logo animationCedear' src={"https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/Amazon-512.png"} alt="Amazon" style={{ position: 'absolute', top: '70%', left: '80%', width: '90px',animationDuration: `${Math.random() * 5 + 5}s` }} />
+            <img className='logo animationCedear' src={"https://cdn.icon-icons.com/icons2/2699/PNG/512/apple_logo_icon_169566.png"} alt="Apple" style={{ position: 'absolute', top: '70%', right: '80%', width: '110px' ,animationDuration: `${Math.random() * 5 + 5}s`}} />
+            <img className='logo animationCedear' src={"https://i.pinimg.com/originals/ae/a6/f5/aea6f543a891c8bb4708ed55bdb4cef0.png"} alt="Netflix" style={{ position: 'absolute', top: '30%', right: '20%', width: '100px' ,animationDuration: `${Math.random() * 5 + 5}s`}} />
+            <img className='logo animationCedear' src={"https://dwglogo.com/wp-content/uploads/2016/03/1500px_Coca_Cola_logo.png"} alt="CocaCola" style={{ position: 'absolute', top: '60%', right: '10%', width: '80px' ,animationDuration: `${Math.random() * 5 + 5}s`}} />
+            <div className='listaCedears-card'>
+              <p><strong>CEDEAR</strong> significa CErificados de DEpósito ARgentinos</p>
+              <p>
+                Este <strong>instrumento de inversión</strong> es un certificado que representa una cierta
+                cantidad de <strong>acciones</strong> o valores que no se venden públicamente ni se cotizan
+                en el mercado argentino.
+              </p>
+            </div>
           </>
         )}
         {page === 2 && (
           <>
-           <h1>¿Qué debo tener en cuenta al comprar?</h1>
-            <ul className='listaCedears'>
-              <li>Cuando compras un CEDEAR, estás accediendo a acciones que se venden en mercados internacionales. Además, obtienes todos los derechos de esas acciones, como los <strong>dividendos</strong> y los cambios en su precio.</li>
-              <li>Es posible generar rendimientos por los <strong>dividendos</strong>, es decir, pagos que una empresa hace a sus <strong>accionistas</strong> o por la <strong>variación de cotización</strong>, es decir, el precio actual al que se venden y compran los CEDEARs.</li>
-            </ul>
+            <h1>¿Qué debo tener en cuenta al comprar?</h1>
+            <div className='listaCedears-card'>
+              <ul>
+                <li>Cuando compras un CEDEAR, estás accediendo a acciones que se venden en mercados internacionales. Además, obtienes todos los derechos de esas acciones, como los <strong>dividendos</strong> y los cambios en su precio.</li>
+                <li>Es posible generar rendimientos por los <strong>dividendos</strong>, es decir, pagos que una empresa hace a sus <strong>accionistas</strong> o por la <strong>variación de cotización</strong>, es decir, el precio actual al que se venden y compran los CEDEARs.</li>
+              </ul>
+            </div>
+            <img className='tutorialPersonaje' src={choose} alt="" />
           </>
         )}
         {page === 3 && (
