@@ -13,13 +13,14 @@ import '../App.css';
 import BuyModal from './ModalBuy';
 import SellModal from './ModalSell';
 import flecha from '../assets/flecha.png';
+import ReBuyModal from './ModalReBuy';
 
 const CEDEARTable = () => {
   const [cedears, setCedears] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-  const API_KEY = 'KAMUMYI1HLBDZCJL'; // Reemplaza con tu clave de API de Alpha Vantage
+  // const API_KEY = 'KAMUMYI1HLBDZCJL';
   const [buyModalOpen, setBuyModalOpen] = useState(false);
   const [selectedCedear, setSelectedCedear] = useState(null);
   const [page, setPage] = useState(0);
@@ -27,9 +28,11 @@ const CEDEARTable = () => {
   const [portfolio, setPortfolio] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCedearForSell, setSelectedCedearForSell] = useState(null);
+  const [selectedCedearForReBuy, setSelectedCedearForReBuy] = useState(null);
   const [paginatedCedears, setPaginatedCedears] = useState([]);
   const [paginatedPortfolio, setPaginatedPortfolio] = useState([]);
   const [sellModalOpen, setSellModalOpen] = useState(false);
+  const [ReBuyModalOpen, setReBuyModalOpen] = useState(false);
   const [actualCedears, setActualCedears] = useState([]);
   const itemsPerPage = 6;
 
@@ -206,22 +209,27 @@ const CEDEARTable = () => {
     setBuyModalOpen(true);
   };
 
-  const handleCloseBuyModal = () => {
-    setBuyModalOpen(false);
+  const handleReBuyClick = (cedear) => {
+    setSelectedCedearForReBuy(cedear);
+    setReBuyModalOpen(true);
   };
 
-  const handleOpenSellModal = (cedear) => {
-    setSelectedCedearForSell(cedear);
-    setSellModalOpen(true);
-  };
+  // const handleCloseBuyModal = () => {
+  //   setBuyModalOpen(false);
+  // };
 
-  const handleCloseSellModal = () => {
-    setSellModalOpen(false);
-  };
+  // const handleOpenSellModal = (cedear) => {
+  //   setSelectedCedearForSell(cedear);
+  //   setSellModalOpen(true);
+  // };
 
-  const handleSearchChange = (e) => {
-    setSearchValue(e.target.value);
-  };
+  // const handleCloseSellModal = () => {
+  //   setSellModalOpen(false);
+  // };
+
+  // const handleSearchChange = (e) => {
+  //   setSearchValue(e.target.value);
+  // };
 
   const handleSellClick = (cedear) => {
     setSelectedCedearForSell(cedear);
@@ -505,7 +513,7 @@ const CEDEARTable = () => {
                 }
               </td>
               <td className='tdBtns'>
-                <button className='comprarCedearsBtn' onClick={() => handleBuyClick(item)}><AddIcon /> Comprar</button>
+                <button className='comprarCedearsBtn' onClick={() => handleReBuyClick(item)}><AddIcon /> Comprar</button>
                 <button className='venderCedearesBtn' onClick={() => handleSellClick(item)}><SellIcon /> Vender</button>
               </td>
             </tr>
@@ -534,6 +542,13 @@ const CEDEARTable = () => {
         <SellModal open={sellModalOpen}
           onClose={() => setSellModalOpen(false)}
           cedear={selectedCedearForSell}
+        />
+      )}
+
+      {selectedCedearForReBuy && (
+        <ReBuyModal open={ReBuyModalOpen}
+          onClose={() => setReBuyModalOpen(false)}
+          cedear={selectedCedearForReBuy}
         />
       )}
 

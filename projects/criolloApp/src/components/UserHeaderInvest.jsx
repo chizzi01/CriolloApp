@@ -23,47 +23,42 @@ const UserHeaderInvest = () => {
         return cedearFound ? parseFloat(cedearFound['04. current price']) : 0;
     };
 
-    
-    useEffect(() => {
-        const saldoReload =() => {
-            const storedSaldo = parseFloat(localStorage.getItem('saldo')) || 0;
-            setSaldoInv(storedSaldo.toFixed(2));
-        
-            // Obtener el portafolio del localStorage
-            const storedPortfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
-            setPortfolio(storedPortfolio);
-        
-            // Calcular el total del portafolio basado en los precios actuales
-            const newTotal = storedPortfolio.reduce((acc, item) => {
-                const currentPrice = getCurrentPrice(item.name);
-                return !isNaN(currentPrice) && !isNaN(item.quantity) ? acc + (currentPrice * item.quantity) : acc;
-            }, 0);
-            setTotalInv(newTotal.toFixed(2));
-        };
-        const updateTotalAndPerformance = () => {
-            // Calcular el rendimiento total
-            const currentPerformance = portfolio.reduce((acc, item) => {
-                const currentPrice = getCurrentPrice(item.name);
-                const purchasePrice = parseFloat(item.price); // Asumiendo que guardas el precio de compra en el localStorage
-                const difference = currentPrice - purchasePrice;
-                return !isNaN(currentPrice) && !isNaN(item.quantity) ? acc + difference * item.quantity : acc;
-            }, 0);
-            setRendimientoTotal(currentPerformance); // Setear directamente el rendimiento total
-            saldoReload();
-        };
-    
-        // Ejecutar la función al montar el componente
-        updateTotalAndPerformance();
-    
-        // Actualizar el rendimiento total cada 10 segundos
-        const updateTotalAndPerformanceInterval = setInterval(() => {
-            updateTotalAndPerformance();
-        }, 10000);
-    
-        // Limpiar el intervalo cuando el componente se desmonta
-        return () => clearInterval(updateTotalAndPerformanceInterval);
-    }, [portfolio]);
-    
+// Primer useEffect para inicializar saldoInv y portfolio
+useEffect(() => {
+    const storedSaldo = parseFloat(localStorage.getItem('saldo')) || 0;
+    setSaldoInv(storedSaldo.toFixed(2));
+
+    const storedPortfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
+    setPortfolio(storedPortfolio);
+}, []); // Nota: el array de dependencias está vacío, por lo que este useEffect solo se ejecutará una vez
+
+// Segundo useEffect para actualizar totalInv y rendimientoTotal
+useEffect(() => {
+    const updateTotalAndPerformance = () => {
+        const newTotal = portfolio.reduce((acc, item) => {
+            const currentPrice = getCurrentPrice(item.name);
+            return !isNaN(currentPrice) && !isNaN(item.quantity) ? acc + (currentPrice * item.quantity) : acc;
+        }, 0);
+        setTotalInv(newTotal.toFixed(2));
+
+        const currentPerformance = portfolio.reduce((acc, item) => {
+            const currentPrice = getCurrentPrice(item.name);
+            const purchasePrice = parseFloat(item.price);
+            const difference = currentPrice - purchasePrice;
+            return !isNaN(currentPrice) && !isNaN(item.quantity) ? acc + difference * item.quantity : acc;
+        }, 0);
+        setRendimientoTotal(currentPerformance);
+    };
+
+    // Ejecutar la función al montar el componente y cada vez que portfolio cambia
+    updateTotalAndPerformance();
+
+    // Actualizar el rendimiento total cada 10 segundos
+    const updateTotalAndPerformanceInterval = setInterval(updateTotalAndPerformance, 10000);
+
+    // Limpiar el intervalo cuando el componente se desmonta
+    return () => clearInterval(updateTotalAndPerformanceInterval);
+}, [portfolio]); // Nota: este useEffect se ejecutará cada vez que el portfolio cambie
 
     const handleAddFunds = () => {
         setShowAddFundsModal(true);
@@ -113,7 +108,7 @@ const UserHeaderInvest = () => {
                         <div className='stat-dataInvest'>
                             <span>Total invertido</span>
                             <p style={{ color: "#19911E" }}>${totalInv}</p>
-                            <p style={{ color: rendimientoTotal >= 0 ? "#19911E" : "#FF0000" }}>${rendimientoTotal.toFixed(2)}</p>
+                            <p style={{ color: rendimientoTotal >= 0 ? "#19911E" : "#FF0000" }}>{rendimientoTotal >= 0 ? "+" : "-"}${Math.abs(rendimientoTotal.toFixed(2))}</p>
                         </div>
                     </div>
                 </div>
