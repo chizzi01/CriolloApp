@@ -130,7 +130,7 @@ export default function Tutoriales() {
 						<h1>¿Como genero rendimientos con un CEDEAR?</h1>
 						<div className="listaCedears-card">
 							<p>
-								Es posible generar rendimientos por  los
+								Es posible generar rendimientos por los
 								dividendos, es decir, pagos que una empresa hace
 								a sus accionistas o por la variación de
 								cotización, es decir, el precio actual al que se
