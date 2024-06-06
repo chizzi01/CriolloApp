@@ -24,7 +24,7 @@ const UserHeader = () => {
                     </div>
                     <div className='stat-data'>
                         <span>146</span>
-                        <p>Prácticas</p>
+                        <p>Tutoriales</p>
                     </div>
                 </div>
                 <div className="stat" style={{ backgroundColor: "#EBEBFF" }}>
@@ -50,7 +50,7 @@ const UserHeader = () => {
                         <img src={peopleIcon} alt="" />
                     </div>
                     <div className='stat-data'>
-                        <span>2300</span>
+                        <span>{parseInt(Math.random(50,200) * 100)}</span>
                         <p>Personas en Línea</p>
                     </div>
                 </div>

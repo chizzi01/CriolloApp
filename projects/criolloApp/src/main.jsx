@@ -19,8 +19,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/novedades" element={<Novedades />} />
-        <Route path="/inversiones" element={<InversionesComponent />} />
-        <Route path="/practicas" element={<Practica />} />
+        <Route path="/inversiones" element={<Practica/>} />
+        <Route path="/practicas" element={<InversionesComponent/>} />
         <Route path="/cedears" element={<PracticaCedears />} />
         <Route path="/tutoriales" element={<Tutoriales />} />
         {/* <Route path="*" element={<h1>404: Página no encontrada</h1>} /> */}

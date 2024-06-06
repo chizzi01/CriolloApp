@@ -1,8 +1,8 @@
 // src/App.js
 import React, { useState } from 'react';
 import '../App.css';
-import UserHeader from '../components/UserHeader.jsx';
-import PracticeList from '../components/PracticeList.jsx';
+import UserHeader from './UserHeader.jsx';
+import PracticeList from './PracticeList.jsx';
 
 const practicesData = [
   {

@@ -64,8 +64,8 @@ export default function InversionesComponent() {
                 <h1 style={{ color: imagenes[indiceActual].color }}>INVERSIONES</h1>
                 <h2>{imagenes[indiceActual].titulo}</h2>
                 <p>{imagenes[indiceActual].texto}</p>
-                <Link to="/tutoriales">
-                <button className='AprenderBtn' style={{ backgroundColor: imagenes[indiceActual].color }}>Aprender</button>
+                <Link to="/cedears">
+                <button className='AprenderBtn' style={{ backgroundColor: imagenes[indiceActual].color }}>Practicar</button>
                 </Link>
             </div>
 
