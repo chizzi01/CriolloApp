@@ -4,10 +4,16 @@ export default function ReBuyModal({ open, onClose, cedear }) {
     const [quantity, setQuantity] = useState(1);
     const actualCedears = JSON.parse(localStorage.getItem('actualCedears')) || [];
 
+    const getDescription = (symbol) => {
+        const cedear = actualCedears.find(c => c['01. symbol'] === symbol);
+        return cedear ? cedear['02. description'] : '';
+    };
 
     const handleBuy = () => {
         let cedears = JSON.parse(localStorage.getItem('cedears')) || [];
         let portfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
+        // Paso 1: Recuperar el array de transacciones actual o inicializarlo como un array vacío
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
         let cedearIndex = cedears.findIndex(c => c.name === cedear.name);
         let portfolioIndex = portfolio.findIndex(p => p.name === cedear.name);
@@ -41,6 +47,24 @@ export default function ReBuyModal({ open, onClose, cedear }) {
             });
         }
 
+        const saldo = parseFloat(localStorage.getItem('saldo')) || 200000;
+        const totalPurchasePrice = quantityNumber * cedearPrice;
+        const newSaldo = saldo - totalPurchasePrice;
+        // Paso 2: Crear el objeto de la transacción
+        const transaction = {
+            accion: "Recompra",
+            simbolo: cedear.name, // Asumiendo que cedear es el objeto del cedear que estás recomprando
+            descripcion: getDescription(cedear.name), // Asumiendo que tienes una descripción en tu objeto cedear
+            fechaHora: new Date().toLocaleString(), // Obtiene la fecha y hora actual
+            montoTotal: totalPurchasePrice // El monto total gastado en la transacción
+        };
+
+        // Paso 3: Añadir este objeto al array de transacciones
+        transactions.push(transaction);
+
+        // Paso 4: Guardar el array actualizado de nuevo en el localStorage
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+
         localStorage.setItem('cedears', JSON.stringify(cedears));
         localStorage.setItem('portfolio', JSON.stringify(portfolio));
 
@@ -49,9 +73,6 @@ export default function ReBuyModal({ open, onClose, cedear }) {
             return acc + (currentPrice * item.quantity);
         }, 0);
 
-        const saldo = parseFloat(localStorage.getItem('saldo')) || 200000;
-        const totalPurchasePrice = quantityNumber * cedearPrice;
-        const newSaldo = saldo - totalPurchasePrice;
 
         // Actualiza el total invertido
         const totalInvested = parseFloat(localStorage.getItem('total')) || 0;

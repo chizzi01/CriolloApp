@@ -6,6 +6,9 @@ export default function BuyModal({ open, onClose, cedear }) {
     const handleBuy = () => {
         let cedears = JSON.parse(localStorage.getItem('cedears')) || [];
         let portfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
+        // Paso 1: Recuperar el array de transacciones actual o inicializarlo como un array vacío
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
 
         if (cedears[0] && cedears[0].name === 'Ninguno') {
             cedears.shift();
@@ -24,11 +27,11 @@ export default function BuyModal({ open, onClose, cedear }) {
             cedears[cedearIndex].price = cedearPrice;
             cedears[cedearIndex].performance = performance;
         } else {
-            cedears.push({ 
-                name: cedear['01. symbol'], 
-                quantity: quantityNumber, 
-                price: cedearPrice, 
-                performance: performance 
+            cedears.push({
+                name: cedear['01. symbol'],
+                quantity: quantityNumber,
+                price: cedearPrice,
+                performance: performance
             });
         }
 
@@ -36,10 +39,10 @@ export default function BuyModal({ open, onClose, cedear }) {
             portfolio[portfolioIndex].quantity += quantityNumber;
             portfolio[portfolioIndex].price = cedearPrice;
         } else {
-            portfolio.push({ 
-                name: cedear['01. symbol'], 
-                quantity: quantityNumber, 
-                price: cedearPrice 
+            portfolio.push({
+                name: cedear['01. symbol'],
+                quantity: quantityNumber,
+                price: cedearPrice
             });
         }
 
@@ -55,6 +58,21 @@ export default function BuyModal({ open, onClose, cedear }) {
         const totalPurchasePrice = quantityNumber * cedearPrice;
         const newSaldo = saldo - totalPurchasePrice;
 
+
+        // Paso 2: Crear el objeto de la transacción
+        const transaction = {
+            accion: "Compra",
+            simbolo: cedear['01. symbol'], // Asumiendo que cedear es el objeto del cedear que estás recomprando
+            descripcion: cedear['02. description'], // Asumiendo que tienes una descripción en tu objeto cedear
+            fechaHora: new Date().toLocaleString(), // Obtiene la fecha y hora actual
+            montoTotal: totalPurchasePrice // El monto total gastado en la transacción
+        };
+
+        // Paso 3: Añadir este objeto al array de transacciones
+        transactions.push(transaction);
+
+        // Paso 4: Guardar el array actualizado de nuevo en el localStorage
+        localStorage.setItem('transactions', JSON.stringify(transactions));
         localStorage.setItem('total', newTotal.toFixed(2));
         localStorage.setItem('saldo', newSaldo.toFixed(2));
 

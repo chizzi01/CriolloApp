@@ -7,11 +7,15 @@ export default function SellModal({ open, onClose, cedear }) {
 
     const getCurrentPrice = (symbol) => {
         const actualCedears = JSON.parse(localStorage.getItem('actualCedears')) || [];
-        console.log('actualCedears:', actualCedears); // Depuración: Verifica los datos
         const cedearFound = actualCedears.find(c => c['01. symbol'] === symbol);
-        console.log('cedear encontrado:', cedearFound); // Depuración: Verifica el objeto encontrado
         return cedearFound ? parseFloat(cedearFound['04. current price']) : 0;
     };
+
+    const getDescription = (symbol) => {
+        const actualCedears = JSON.parse(localStorage.getItem('actualCedears')) || [];
+        const cedearFound = actualCedears.find(c => c['01. symbol'] === symbol);
+        return cedearFound ? cedearFound['02. description'] : '';
+    }
 
     useEffect(() => {
         if (cedear) {
@@ -26,6 +30,7 @@ export default function SellModal({ open, onClose, cedear }) {
     const handleSell = () => {
         let portfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
         let cedearIndex = portfolio.findIndex(c => c['01. symbol'] === cedear['01. symbol']);
+        const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
         const quantityNumber = parseInt(quantity, 10);
         const totalSalePrice = precioPorUnidad * quantityNumber;
@@ -44,6 +49,21 @@ export default function SellModal({ open, onClose, cedear }) {
             const newTotal = total - totalSalePrice;
             const newSaldo = saldo + totalSalePrice;
 
+
+            // Paso 2: Crear el objeto de la transacción
+            const transaction = {
+                accion: "Venta",
+                simbolo: cedear.name, // Asumiendo que cedear es el objeto del cedear que estás recomprando
+                descripcion: getDescription(cedear.name), // Asumiendo que tienes una descripción en tu objeto cedear
+                fechaHora: new Date().toLocaleString(), // Obtiene la fecha y hora actual
+                montoTotal: totalSalePrice // El monto total gastado en la transacción
+            };
+
+            // Paso 3: Añadir este objeto al array de transacciones
+            transactions.push(transaction);
+
+            // Paso 4: Guardar el array actualizado de nuevo en el localStorage
+            localStorage.setItem('transactions', JSON.stringify(transactions));
             localStorage.setItem('total', newTotal.toFixed(2));
             localStorage.setItem('saldo', newSaldo.toFixed(2));
 
@@ -59,7 +79,7 @@ export default function SellModal({ open, onClose, cedear }) {
 
         window.location.reload();
     };
-    
+
 
     if (!open) {
         return null;
