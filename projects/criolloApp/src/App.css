@@ -1740,3 +1740,18 @@ button:disabled {
 		transform: scale(0);
 	}
 }
+
+@media (max-height: 715px) {
+	.flechas-container {
+		top: 10%;
+	}
+	.eslogan-container {
+		top: 13%;
+	}
+	.textoInversiones-container {
+		font-size: 0.9em;
+	}
+	.seccionesContainer {
+		top: 35%;
+	}
+}
