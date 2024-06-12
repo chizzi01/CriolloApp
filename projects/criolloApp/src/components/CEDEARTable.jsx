@@ -37,6 +37,7 @@ const CEDEARTable = () => {
   const [ReBuyModalOpen, setReBuyModalOpen] = useState(false);
   const [actualCedears, setActualCedears] = useState([]);
   const [transactions, setTransactions] = useState([]);
+  const [searchPortValue, setSearchPortValue] = useState('');
   const itemsPerPage = 6;
 
 
@@ -225,10 +226,32 @@ const CEDEARTable = () => {
     handlePageTransactionsClick(pageTransactions); // Añadir esta línea
   }, [transactions, pageTransactions]);
 
+  useEffect(() => {
+    // Filtrar cedears basado en el valor de búsqueda
+    const searchValueLower = searchValue.toLowerCase(); // Convertir el valor de búsqueda a minúsculas
+    const filteredCedears = cedears.filter(cedear =>
+      cedear['01. symbol'].toLowerCase().includes(searchValueLower) ||
+      cedear['02. description'].toLowerCase().includes(searchValueLower)
+    );
+  
+    // Actualizar el estado con los cedears filtrados
+    setPaginatedCedears(filteredCedears.slice(0, itemsPerPage)); // Asumiendo paginación inicial
+    setPage(0); // Reiniciar a la primera página de resultados
+  }, [searchValue, cedears]);
 
 
-  if (loading) return <div>Cargando...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  useEffect(() => {
+    // Filtrar portfolio basado en el valor de búsqueda
+    const searchTermLower = searchTerm.toLowerCase(); // Convertir el valor de búsqueda a minúsculas
+    const filteredPortfolio = portfolio.filter(item =>
+      item.name && item.name.toLowerCase().includes(searchTermLower)
+    );
+
+    // Actualizar el estado con el portfolio filtrado
+    setPaginatedPortfolio(filteredPortfolio.slice(0, itemsPerPage)); // Asumiendo paginación inicial
+    setPageCartera(0); // Reiniciar a la primera página de resultados
+  }, [searchTerm, portfolio]);
+
 
 
 
@@ -244,6 +267,7 @@ const CEDEARTable = () => {
   };
 
   const handleSellClick = (cedear) => {
+    console.log('cedear:', cedear);
     setSelectedCedearForSell(cedear);
     setSellModalOpen(true);
   };

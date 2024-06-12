@@ -110,6 +110,7 @@ export function App() {
           <TextField
             value={search}
             onChange={handleSearchChange}
+            placeholder='Busca tutoriales, practicas y más...'
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

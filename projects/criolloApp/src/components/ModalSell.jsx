@@ -47,7 +47,7 @@ export default function SellModal({ open, onClose, cedear }) {
 
     const handleSell = () => {
         let portfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
-        let cedearIndex = portfolio.findIndex(c => c['01. symbol'] === cedear['01. symbol']);
+        let cedearIndex = portfolio.findIndex(c => c.name === cedear.name);
         const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
         const quantityNumber = parseInt(quantity, 10);
