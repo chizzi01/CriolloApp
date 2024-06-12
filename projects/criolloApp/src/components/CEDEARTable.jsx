@@ -43,16 +43,16 @@ const CEDEARTable = () => {
   const fetchData = async () => {
     try {
       let data = [
-        { '01. symbol': 'AAPL', '02. description': 'Apple Inc.', '03. conversion ratio': 1, '04. current price': 150, '05. commission': '2%', '06. total cost': 153.00 },
-        { '01. symbol': 'IBM', '02. description': 'International Business Machines', '03. conversion ratio': 1, '04. current price': 250, '05. commission': '2%', '06. total cost': 255.00 },
-        { '01. symbol': 'TSLA', '02. description': 'Tesla Inc.', '03. conversion ratio': 1, '04. current price': 350, '05. commission': '2%', '06. total cost': 357.00 },
-        { '01. symbol': 'GOOGL', '02. description': 'Alphabet Inc.', '03. conversion ratio': 1, '04. current price': 2000, '05. commission': '2%', '06. total cost': 2040.00 },
-        { '01. symbol': 'AMZN', '02. description': 'Amazon.com Inc.', '03. conversion ratio': 1, '04. current price': 3000, '05. commission': '2%', '06. total cost': 3060.00 },
-        { '01. symbol': 'MSFT', '02. description': 'Microsoft Corporation', '03. conversion ratio': 1, '04. current price': 500, '05. commission': '2%', '06. total cost': 510.00 },
-        { '01. symbol': 'FB', '02. description': 'Meta Platforms Inc.', '03. conversion ratio': 1, '04. current price': 300, '05. commission': '2%', '06. total cost': 306.00 },
-        { '01. symbol': 'NVDA', '02. description': 'NVIDIA Corporation', '03. conversion ratio': 1, '04. current price': 700, '05. commission': '2%', '06. total cost': 714.00 },
-        { '01. symbol': 'PYPL', '02. description': 'PayPal Holdings Inc.', '03. conversion ratio': 1, '04. current price': 200, '05. commission': '2%', '06. total cost': 204.00 },
-        { '01. symbol': 'INTC', '02. description': 'Intel Corporation', '03. conversion ratio': 1, '04. current price': 50, '05. commission': '2%', '06. total cost': 51.00 }
+        { '01. symbol': 'AAPL', '02. description': 'Apple Inc.', '03. conversion ratio': '10:1', '04. current price': 150, '05. commission': '2%', '06. total cost': 153.00 },
+        { '01. symbol': 'IBM', '02. description': 'International Business Machines', '03. conversion ratio': '8:1', '04. current price': 250, '05. commission': '2%', '06. total cost': 255.00 },
+        { '01. symbol': 'TSLA', '02. description': 'Tesla Inc.', '03. conversion ratio': '5:1', '04. current price': 350, '05. commission': '2%', '06. total cost': 357.00 },
+        { '01. symbol': 'GOOGL', '02. description': 'Alphabet Inc.', '03. conversion ratio': '15:1', '04. current price': 2000, '05. commission': '2%', '06. total cost': 2040.00 },
+        { '01. symbol': 'AMZN', '02. description': 'Amazon.com Inc.', '03. conversion ratio': '20:1', '04. current price': 3000, '05. commission': '2%', '06. total cost': 3060.00 },
+        { '01. symbol': 'MSFT', '02. description': 'Microsoft Corporation', '03. conversion ratio': '10:1', '04. current price': 500, '05. commission': '2%', '06. total cost': 510.00 },
+        { '01. symbol': 'FB', '02. description': 'Meta Platforms Inc.', '03. conversion ratio': '8:1', '04. current price': 300, '05. commission': '2%', '06. total cost': 306.00 },
+        { '01. symbol': 'NVDA', '02. description': 'NVIDIA Corporation', '03. conversion ratio': '4:1', '04. current price': 700, '05. commission': '2%', '06. total cost': 714.00 },
+        { '01. symbol': 'PYPL', '02. description': 'PayPal Holdings Inc.', '03. conversion ratio': '10:1', '04. current price': 200, '05. commission': '2%', '06. total cost': 204.00 },
+        { '01. symbol': 'INTC', '02. description': 'Intel Corporation', '03. conversion ratio': '12:1', '04. current price': 50, '05. commission': '2%', '06. total cost': 51.00 }
       ];
       const setInitialDataInLocalStorage = (data) => {
         const storedHistory = localStorage.getItem('historyCedears');
@@ -305,7 +305,7 @@ const CEDEARTable = () => {
           <TableRow>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del símbolo">
+                <Tooltip title="Basicamente el 'Apodo' del cedear">
                   <InfoIcon />
                 </Tooltip>
                 Símbolo
@@ -313,7 +313,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información de la descripción">
+              <Tooltip title="Es el 'Nombre completo' de la empresa a la que pertenece el cedear">
                   <InfoIcon />
                 </Tooltip>
                 Descripción
@@ -321,7 +321,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información de la ratio de conversión">
+                <Tooltip title="Cuantos cedears equivalen a una accion de la empresa">
                   <InfoIcon />
                 </Tooltip>
                 Ratio de conversión
@@ -329,7 +329,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del precio actual">
+                <Tooltip title="Esta es la información del precio actual sin comisiones">
                   <InfoIcon />
                 </Tooltip>
                 Precio actual
@@ -337,7 +337,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información de la comisión">
+                <Tooltip title="Esta es la información de la comisión que te cobran por cada cedear">
                   <InfoIcon />
                 </Tooltip>
                 Comisión
@@ -345,7 +345,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del costo total">
+                <Tooltip title="Esta es la información del precio + la comision">
                   <InfoIcon />
                 </Tooltip>
                 Costo total
@@ -353,7 +353,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del costo total">
+                <Tooltip title="Podes comprar cedears">
                   <InfoIcon />
                 </Tooltip>
                 Acciones
@@ -373,9 +373,9 @@ const CEDEARTable = () => {
               </td>
               <td>{cedear['02. description']}</td>
               <td>{cedear['03. conversion ratio']}</td>
-              <td>{parseFloat(getCurrentPrice(cedear['01. symbol'])).toFixed(2)}</td>
+              <td>${parseFloat(getCurrentPrice(cedear['01. symbol'])).toFixed(2)}</td>
               <td>{cedear['05. commission']}</td>
-              <td>{cedear['06. total cost']}</td>
+              <td>${cedear['06. total cost']}</td>
               <td>
                 <button className='comprarCedearsBtn' onClick={() => handleBuyClick(cedear)}><AddIcon />Comprar</button>
               </td>
@@ -451,7 +451,7 @@ const CEDEARTable = () => {
           <TableRow>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del símbolo">
+              <Tooltip title="Basicamente el 'Apodo' del cedear">
                   <InfoIcon />
                 </Tooltip>
                 CEDEAR
@@ -459,7 +459,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del símbolo">
+                <Tooltip title="Esta es la cantidad de CEDEARs que compraste">
                   <InfoIcon />
                 </Tooltip>
                 Cantidad
@@ -467,7 +467,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información de la descripción">
+                <Tooltip title="El precio al que en su momento compraste el CEDEAR">
                   <InfoIcon />
                 </Tooltip>
                 Precio de compra
@@ -475,7 +475,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información de la ratio de conversión">
+                <Tooltip title="El precio actual por unidad del CEDEAR">
                   <InfoIcon />
                 </Tooltip>
                 Precio actual
@@ -483,7 +483,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del precio actual">
+                <Tooltip title="El rendimiento actual que tuvo la empresa a la que pertenece el CEDEAR ">
                   <InfoIcon />
                 </Tooltip>
                 Rendimiento %
@@ -491,7 +491,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información de la comisión">
+                <Tooltip title="El rendimiento total de tus CEDEARs desde su compra hasta ahora">
                   <InfoIcon />
                 </Tooltip>
                 Rendimiento Total
@@ -499,7 +499,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del costo total">
+                <Tooltip title="Podes comprar más o vender tus CEDEARs">
                   <InfoIcon />
                 </Tooltip>
                 Acciones
@@ -512,8 +512,8 @@ const CEDEARTable = () => {
             <tr key={index}>
               <td>{item.name}</td>
               <td>{item.quantity}</td>
-              <td>{parseFloat(item.price).toFixed(2)}</td>
-              <td>{parseFloat(getCurrentPrice(item.name)).toFixed(2)}</td>
+              <td>${parseFloat(item.price).toFixed(2)}</td>
+              <td>${parseFloat(getCurrentPrice(item.name)).toFixed(2)}</td>
               <td style={{ color: getCurrentProfit(item.name) >= 0 ? 'green' : 'red' }}>
                 {getCurrentProfit(item.name) >= 0 ? `+${parseFloat(getCurrentProfit(item.name)).toFixed(2)}%` : `${parseFloat(getCurrentProfit(item.name)).toFixed(2)}%`}
               </td>
@@ -574,7 +574,7 @@ const CEDEARTable = () => {
           <TableRow>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del símbolo">
+                <Tooltip title="La accion que realizaste">
                   <InfoIcon />
                 </Tooltip>
                 Accion
@@ -582,7 +582,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del símbolo">
+                <Tooltip title="Sobre que CEDEAR">
                   <InfoIcon />
                 </Tooltip>
                 Simbolo
@@ -590,7 +590,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información de la descripción">
+                <Tooltip title="El nombre de la empresa a la que pertenece el CEDEAR">
                   <InfoIcon />
                 </Tooltip>
                 Descripcion
@@ -598,7 +598,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información de la ratio de conversión">
+                <Tooltip title="Fecha y hora de la transaccion">
                   <InfoIcon />
                 </Tooltip>
                 Fecha y hora
@@ -606,7 +606,7 @@ const CEDEARTable = () => {
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la información del precio actual">
+                <Tooltip title="La cantidad de dinero total que moviste, ya sea compra o venta">
                   <InfoIcon />
                 </Tooltip>
                 Monto
