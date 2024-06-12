@@ -10,8 +10,8 @@ export default function BuyModal({ open, onClose, cedear }) {
         const transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
 
-        if (cedears[0] && cedears[0].name === 'Ninguno') {
-            cedears.shift();
+        if (portfolio[0] && portfolio[0].name === 'Ninguno') {
+            portfolio.shift();
         }
 
         let cedearIndex = cedears.findIndex(c => c.name === cedear['01. symbol']);

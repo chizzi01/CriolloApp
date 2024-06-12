@@ -35,18 +35,27 @@ useEffect(() => {
 // Segundo useEffect para actualizar totalInv y rendimientoTotal
 useEffect(() => {
     const updateTotalAndPerformance = () => {
-        const newTotal = portfolio.reduce((acc, item) => {
-            const currentPrice = getCurrentPrice(item.name);
-            return !isNaN(currentPrice) && !isNaN(item.quantity) ? acc + (currentPrice * item.quantity) : acc;
-        }, 0);
-        setTotalInv(newTotal.toFixed(2));
+        // Verificar si el portfolio contiene un item con el nombre "ninguno"
+        const hasNoneItem = portfolio.some(item => item.name.toLowerCase() === "ninguno");
+        
+        let newTotal = 0;
+        let currentPerformance = 0;
 
-        const currentPerformance = portfolio.reduce((acc, item) => {
-            const currentPrice = getCurrentPrice(item.name);
-            const purchasePrice = parseFloat(item.price);
-            const difference = currentPrice - purchasePrice;
-            return !isNaN(currentPrice) && !isNaN(item.quantity) ? acc + difference * item.quantity : acc;
-        }, 0);
+        if (!hasNoneItem) {
+            newTotal = portfolio.reduce((acc, item) => {
+                const currentPrice = getCurrentPrice(item.name);
+                return !isNaN(currentPrice) && !isNaN(item.quantity) ? acc + (currentPrice * item.quantity) : acc;
+            }, 0);
+
+            currentPerformance = portfolio.reduce((acc, item) => {
+                const currentPrice = getCurrentPrice(item.name);
+                const purchasePrice = parseFloat(item.price);
+                const difference = currentPrice - purchasePrice;
+                return !isNaN(currentPrice) && !isNaN(item.quantity) ? acc + difference * item.quantity : acc;
+            }, 0);
+        }
+
+        setTotalInv(newTotal.toFixed(2));
         setRendimientoTotal(currentPerformance);
     };
 

@@ -8,9 +8,9 @@ import { PieChart } from '@mui/x-charts/PieChart';
 //   { name: 'CEDEAR 3', quantity: 20 },
 // ];
 
-if (!localStorage.getItem('cedears')) {
+if (!localStorage.getItem('portfolio')) {
     // Si no existen, establece "Ninguno" como el dato por defecto
-    localStorage.setItem('cedears', JSON.stringify([{ name: 'Ninguno', quantity: 1 }]));
+    localStorage.setItem('portfolio', JSON.stringify([{ name: 'Ninguno', quantity: 1 }]));
   }
 
 export default function PieActiveArc() {
