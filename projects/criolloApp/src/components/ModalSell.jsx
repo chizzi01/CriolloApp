@@ -17,13 +17,31 @@ export default function SellModal({ open, onClose, cedear }) {
         return cedearFound ? cedearFound['02. description'] : '';
     }
 
+    const getQuantity = (symbol) => {
+        const portfolio = JSON.parse(localStorage.getItem('portfolio')) || [];
+        const cedearFound = portfolio.find(c => c.name === symbol);
+        return cedearFound ? cedearFound.quantity : 0;
+    }
+
+    const cedearQuantity = getQuantity(cedear.name);
+
+    const incrementQuantity = () => {
+        if (quantity < cedearQuantity) {
+            setQuantity(quantity + 1);
+        }
+    };
+
+    const isSellDisabled = quantity > cedearQuantity;
+
     useEffect(() => {
         if (cedear) {
             const currentPrice = getCurrentPrice(cedear.name);
-            console.log('Precio actual:', currentPrice); // Depuración: Verifica el precio obtenido
+
+            
 
             setPrecioPorUnidad(currentPrice);
             setTotalSalePrice((quantity * currentPrice).toFixed(2));
+
         }
     }, [cedear, quantity]);
 
@@ -101,8 +119,14 @@ export default function SellModal({ open, onClose, cedear }) {
                 </p>
                 <div className="input-group">
                     <button className='restar' onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
-                    <input type="number" min='1' value={quantity} onChange={e => setQuantity(parseInt(e.target.value, 10))} />
-                    <button className='sumar' onClick={() => setQuantity(quantity + 1)}>+</button>
+                    <input 
+                    type="number" 
+                    min='1' 
+                    max={cedearQuantity} // Establece el máximo como la cantidad disponible
+                    value={quantity} 
+                    onChange={e => setQuantity(Math.min(parseInt(e.target.value, 10), cedearQuantity))} // Asegura no exceder la cantidad disponible
+                />
+                <button className='sumar' onClick={incrementQuantity}>+</button>
                 </div>
                 <div className='buttons-comprar'>
                     <button onClick={onClose}>Cancelar</button>
