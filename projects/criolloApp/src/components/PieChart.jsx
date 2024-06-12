@@ -17,7 +17,7 @@ export default function PieActiveArc() {
   const [cedears, setCedears] = useState([]);
 
   const handleStorageChange = () => {
-    let storedCedears = JSON.parse(localStorage.getItem('cedears'));
+    let storedCedears = JSON.parse(localStorage.getItem('portfolio'));
     if (storedCedears.length === 0) {
       storedCedears = [{ name: 'Ninguno', quantity: 1 }];
     }
@@ -37,7 +37,7 @@ export default function PieActiveArc() {
   }, []);
 
   useEffect(() => {
-    let storedCedears = JSON.parse(localStorage.getItem('cedears'));
+    let storedCedears = JSON.parse(localStorage.getItem('portfolio'));
     if (storedCedears.length === 0) {
       storedCedears = [{ name: 'Ninguno', quantity: 1 }];
     }
