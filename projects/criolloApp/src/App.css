@@ -1615,7 +1615,7 @@ table td {
 	text-align: center;
 }
 
-.tutorial-container{
+.tutorial-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1655,7 +1655,6 @@ table td {
 	align-items: center;
 	padding: 10px;
 	background-color: #f8f8f8;
-
 }
 
 .page-indicator {
@@ -1753,5 +1752,60 @@ button:disabled {
 	}
 	.seccionesContainer {
 		top: 35%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.homeSearch,
+	h2 {
+		font-family: 2px;
+	}
+	.homeImgs {
+		display: none;
+	}
+
+	.navTextsHamburguer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+	}
+
+	.css-lt5n7y {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
+		height: 100%;
+		background: rgb(7, 118, 71) !important;
+	}
+
+	.css-h4y409-MuiList-root {
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		gap: 50px;
+		padding-top: 20px;
+	}
+
+	.css-h4y409-MuiList-root a {
+		color: white;
+		cursor: pointer;
+		font-size: 1.5em;
+	}
+
+	.card-container {
+		transform: translateY(0%);
+		margin-top: 30px;
+	}
+
+	.card-image {
+		margin: 0px;
+		width: 10%;
+	}
+
+	.card-title {
+		font-size: 1.5em;
 	}
 }
