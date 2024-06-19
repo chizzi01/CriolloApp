@@ -90,7 +90,7 @@ export function App() {
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
-    const newResults = ['Inversión en Cedears', 'Inversión en Bonos', 'Inversión en Criptomonedas', 'Inversión en Letras', 'Inversión en Plazo Fijo']
+    const newResults = ['Tutorial de Cedears', 'Tutorial de Criptomonedas', 'Tutorial de ETFs', 'Tutorial de Fondos Comunes de Inversión', 'Tutorial de Renta Fija', 'Tutorial de Renta Variable', 'Tutorial de Trading', 'Practica de Cedears', 'Practica de Criptomonedas', 'Practica de ETFs', 'Practica de Fondos Comunes de Inversión', 'Practica de Renta Fija', 'Practica de Renta Variable', 'Practica de Trading']
       .filter((item) =>
         item.toLowerCase().includes(event.target.value.toLowerCase())
       );
@@ -110,6 +110,7 @@ export function App() {
           <TextField
             value={search}
             onChange={handleSearchChange}
+            placeholder='Busca tutoriales, practicas y más...'
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -140,7 +141,7 @@ export function App() {
           {search && results.length > 0 && (
             <div className="dropdown">
               {results.map((result, index) => (
-                <Link to="/inversiones" key={index}>
+                <Link to={result.startsWith('Tutorial') ? "/tutoriales" : "/cedears"} key={index}>
                   <div className='item'>
                     {result}
                   </div>

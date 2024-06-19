@@ -185,7 +185,7 @@ export default function DrawerAppBar({ window, currentSection }) {
               },
               {
                 primary: 'Inversiones',
-                secondary: 'Explora oportunidades de inversión y aprende a hacer crecer tu dinero',
+                secondary: 'Explora oportunidades de inversión y aprende a hacer crecer tu dinero (Cedears, FIMA, Bonos, Cripto)',
               },
             ].map((item, index) => (
               <div key={index} className='list-card'>
