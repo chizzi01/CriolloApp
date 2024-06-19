@@ -229,10 +229,6 @@ export function App() {
 										justifyContent: "center",
 									}}
 								>
-									<span
-										role="img"
-										aria-label="attention"
-									></span>{" "}
 									TOP 3 MÁS BUSCADOS EN CRIOLLO
 								</div>
 							))}
