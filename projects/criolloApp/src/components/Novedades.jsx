@@ -1,11 +1,11 @@
 import React from 'react';
 import CardNovedades from './CardNovedades'; // Asegúrate de que la ruta de importación sea correcta
 import '../App.css'; // Asegúrate de que este import refleje la ubicación correcta de tu archivo CSS
+import Footer from './Footer'; // Asegúrate de que la ruta de importación sea correcta
 
 export default function Novedades() {
   return (
     <div className="novedades-container">
-      <h2 className="novedades-title">Novedades sobre Inversiones</h2>
       <ul className="novedades-list">
         <CardNovedades 
           imagen="https://media.ambito.com/p/59c769680fbceb9f2c78e225ad77b021/adjuntos/239/imagenes/041/326/0041326748/criptomonedas-bitcoinjpg.jpg" // Reemplaza con la ruta de imagen correcta
@@ -34,6 +34,7 @@ export default function Novedades() {
         />
 
       </ul>
+      <Footer />
     </div>
   );
 }
