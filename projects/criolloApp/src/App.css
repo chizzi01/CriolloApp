@@ -1017,7 +1017,7 @@ tr:hover {
 	display: flex;
 	flex-direction: column;
 	width: 300px;
-	height: 350px;
+	height: 380px;
 	justify-content: space-between;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -1039,14 +1039,13 @@ tr:hover {
 
 .practice-info p {
 	color: #777;
-	margin: 10px 0;
 }
 
 .practice-footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 15px;
+	padding: 5px 15px;
 }
 
 .practice-button {
@@ -1729,6 +1728,13 @@ button:disabled {
 	border-radius: 4px; /* Opcional: para mantener la consistencia con .novedad-item */
 	margin-bottom: 10px;
 	size: cover;
+  }
+
+  .patrocinado{
+	background-color: #f5f5f5;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	padding: 2px;
   }
 
 @keyframes float {

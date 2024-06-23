@@ -74,6 +74,7 @@ const PracticeList = ({ practices }) => {
                             title={practice.title}
                             description={practice.description}
                             progress={practice.progress}
+                            isPatrocinado={practice.isPatrocinado}
                         />
                     ))
                 ) : (
