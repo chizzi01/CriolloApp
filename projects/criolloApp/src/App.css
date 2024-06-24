@@ -1854,11 +1854,61 @@ button:disabled {
 	}
 
 	.card-image {
-		margin: 0px;
-		width: 10%;
+		display: none;
+	}
+
+	.card {
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.card-title {
 		font-size: 1.5em;
+	}
+
+	.title {
+		font-size: 5rem;
+	}
+
+	.card-stats {
+		margin-top: 10px;
+	}
+
+	.question {
+		font-size: 19px;
+	}
+
+	.cedear-header {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.header-left {
+		display: contents;
+	}
+
+	.mateCohete,
+	.tutorialPersonaje {
+		display: none;
+	}
+
+	.listaCedears-card {
+		width: 100%;
+	}
+
+	.page-indicator {
+		gap: 0px;
+	}
+
+	.pageButtons {
+		padding: 0px;
+	}
+
+	.imagenes-circle {
+		display: none;
+	}
+
+	.image-circle {
+		width: 100%;
 	}
 }

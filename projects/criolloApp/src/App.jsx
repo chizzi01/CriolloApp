@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import Footer from "./components/Footer";
 import mateCohete from "./assets/mateConCohete.png";
@@ -18,7 +18,6 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CardComunidad from "./components/CardComunidad";
 import PregComunidad from "./components/PregComunidad";
-import alert from "./assets/alert.png";
 // import Tutoriales from './Tutoriales';
 
 const theme = createTheme({
@@ -111,7 +110,7 @@ export function App() {
 		<div className="App">
 			<style>
 				@import
-				url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+				url(`https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap);
 			</style>
 			<section id="home-section">
 				<img src={mateCohete} alt="" className="homeImgs" />
