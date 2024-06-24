@@ -103,20 +103,21 @@ export default function Tutoriales() {
 										subir y bajar mucho en el corto plazo.
 										Es por esto que:
 									</p>
-									<li>
+									<li className="cedears-items">
 										Son utilizados para inversiones a largo
 										plazo, aproximadamente 5 años.
 									</li>
-									<li>
+									<li className="cedears-items">
 										En este tipo de instrumentos lo ideal es
 										utilizar fondos que sabemos que no vamos
 										a necesitar utilizar en el corto plazo
 									</li>
-									<li>
+
+									<li className="cedears-items">
 										Podemos disponer de ellos con PESOS o
 										DOLARES
 									</li>
-									<li>
+									<li className="cedears-items">
 										Es una buena opcion para poder generar
 										rendimientos con dinero que no vamos a
 										utilizar en el corto plazo y no queremos
