@@ -4,10 +4,12 @@ import avatar from '../assets/avatar.jpg';
 import total from '../assets/total.png';
 import saldo from '../assets/saldo.png';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import PieActiveArc from './PieChart';
 import AddFundsModal from './AddFundsModal';
 import ResetModal from './ResetModal';
+import IOL from '../assets/iol.png'
 
 const UserHeaderInvest = () => {
     const [totalInv, setTotalInv] = useState(0);
@@ -130,6 +132,13 @@ useEffect(() => {
                         <RefreshIcon />
                         Restablecer
                     </button>
+                    <button className='btn' onClick={() => window.open('https://www.invertironline.com/', '_blank')} style={{ backgroundColor: "#6439FF", color: "#fff" }}>
+                        <img src={IOL} alt="IOL" style={{ width: "3rem" }} />
+                    </button>
+                    <p style={{ color: "#6439FF", cursor: "pointer", display:"flex", flexDirection:"row", alignContent:"center", alignSelf:"center" }}>
+                        <ArrowBackIcon />
+                        ¿No sabes donde invertir? ¡Click aquí!
+                    </p>
                     {showAddFundsModal && (
                         <AddFundsModal onClose={() => setShowAddFundsModal(false)} onAddFunds={addFunds} />
                     )}
