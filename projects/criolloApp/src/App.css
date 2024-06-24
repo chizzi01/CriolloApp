@@ -1587,7 +1587,7 @@ table td {
 	background-color: white;
 	border-radius: 10px;
 	font-family: "Inter", sans-serif;
-	font-size: 12px;
+	font-size: 16px;
 }
 
 .glosario-text h2 {
@@ -1686,17 +1686,17 @@ button:disabled {
 .novedades-container {
 	background-color: #f5f5f5;
 	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	height: 100%;
-  }
-  
-  .novedades-title {
+}
+
+.novedades-title {
 	color: #333;
 	text-align: center;
 	margin-bottom: 20px;
-  }
-  
-  .novedades-list {
+}
+
+.novedades-list {
 	list-style: none;
 	padding: 0;
 	display: flex;
@@ -1704,38 +1704,38 @@ button:disabled {
 	justify-content: center;
 	gap: 20px;
 	padding: 100px;
-  }
-  
-  .novedad-item {
+}
+
+.novedad-item {
 	margin-bottom: 15px;
 	padding: 10px;
 	background-color: #fff;
 	border-radius: 4px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	width: 200px;
-  }
-  
-  .novedad-item h3 {
+}
+
+.novedad-item h3 {
 	color: #007bff;
-  }
-  
-  .novedad-item p {
+}
+
+.novedad-item p {
 	color: #666;
-  }
-  .novedad-imagen {
+}
+.novedad-imagen {
 	width: 100%; /* Ajusta esto según tus necesidades */
 	height: auto;
 	border-radius: 4px; /* Opcional: para mantener la consistencia con .novedad-item */
 	margin-bottom: 10px;
 	size: cover;
-  }
+}
 
-  .patrocinado{
+.patrocinado {
 	background-color: #f5f5f5;
 	border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	padding: 2px;
-  }
+}
 
 @keyframes float {
 	0% {
@@ -1910,5 +1910,19 @@ button:disabled {
 
 	.image-circle {
 		width: 100%;
+	}
+
+	.imagenInversiones,
+	.flechas-container,
+	img,
+	.eslogan-container {
+		display: none;
+	}
+
+	.glosario-criollo-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 }
