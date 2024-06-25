@@ -1917,8 +1917,11 @@ button:disabled {
 
 	.imagenInversiones,
 	.flechas-container,
-	img,
 	.eslogan-container {
+		display: none;
+	}
+
+	#image-central {
 		display: none;
 	}
 
@@ -1927,5 +1930,14 @@ button:disabled {
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+	}
+
+	.user-stats,
+	.search-practica-align {
+		flex-direction: column;
+	}
+
+	.select-practica {
+		width: 60%;
 	}
 }

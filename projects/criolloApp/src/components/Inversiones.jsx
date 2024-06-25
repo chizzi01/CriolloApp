@@ -102,7 +102,11 @@ export default function InversionesComponent() {
 				</div>
 			</div>
 			<div className="imagenCentral">
-				<img src={imagenes[indiceActual].src} alt="imagen central" />
+				<img
+					src={imagenes[indiceActual].src}
+					alt="imagen central"
+					id="image-central"
+				/>
 			</div>
 			<div className="textoInversiones-container">
 				<h1 style={{ color: imagenes[indiceActual].color }}>
