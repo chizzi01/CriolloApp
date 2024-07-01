@@ -1189,12 +1189,27 @@ option {
 }
 
 .user-chart {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-width: 300px; /* Ajusta según sea necesario */
+    min-height: 300px; /* Ajusta según sea necesario */
 }
+
+.pie-chart-container {
+	width: 100%; /* Ocupa el 100% del ancho de su contenedor padre */
+	height: 0; /* Evita que el contenedor tenga un alto inicial */
+	position: relative; /* Necesario para el posicionamiento absoluto del gráfico dentro */
+  }
+  
+  .pie-chart-container > * {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+  }
 
 .stat-dataInvest {
 	display: flex;
@@ -1952,4 +1967,56 @@ button:disabled {
 	.select-practica {
 		width: 60%;
 	}
+	.user-headerAlign {
+		flex-direction: column;
+	}
+	.user-headerInvest {
+		width: 100%;
+	}
+	.user-chart {
+		display: none;
+	}
+	.user-options {
+		flex-direction: column;
+	}
+	.stat-icon{
+		width: 50px;
+		height: 50px;
+	}
+	.stat-dataInvest{
+		flex-direction: column;
+	}
+	.stat-dataInvest p{
+		font-size: 1em;
+	}
+	.stat-dataInvest span{
+		font-size: 1.2em;
+	}
+	.user-buttons button{
+		font-size: 1em;
+		margin-right: 0;
+		margin-top: 10px;
+	}
+	.user-buttons{
+		flex-direction: column;
+	}
+	.user-buttons button{
+		width: 100%;
+	}
+	.user-stats{
+		flex-direction: column;
+	}
+	.search-practicaItem-align{
+		width: 100%;
+	}
+	.columna-ocultable{
+		display: none !important;
+	}
+	.tdBtns{
+		flex-direction: column;
+		padding: 5px;
+	}
+	.my-chart-container{
+		display: none;
+	  }
 }

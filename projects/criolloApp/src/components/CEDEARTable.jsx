@@ -335,7 +335,7 @@ const CEDEARTable = () => {
                 Símbolo
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
               <Tooltip title="Es el 'Nombre completo' de la empresa a la que pertenece el cedear">
                   <InfoIcon />
@@ -343,7 +343,7 @@ const CEDEARTable = () => {
                 Descripción
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
                 <Tooltip title="Cuantos cedears equivalen a una accion de la empresa">
                   <InfoIcon />
@@ -351,7 +351,7 @@ const CEDEARTable = () => {
                 Ratio de conversión
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} >
               <div className="header-icon-text">
                 <Tooltip title="Esta es la información del precio actual sin comisiones">
                   <InfoIcon />
@@ -359,7 +359,7 @@ const CEDEARTable = () => {
                 Precio actual
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
                 <Tooltip title="Esta es la información de la comisión que te cobran por cada cedear">
                   <InfoIcon />
@@ -367,7 +367,7 @@ const CEDEARTable = () => {
                 Comisión
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
                 <Tooltip title="Esta es la información del precio + la comision">
                   <InfoIcon />
@@ -395,11 +395,11 @@ const CEDEARTable = () => {
                   {cedear.profit}%
                 </span>
               </td>
-              <td>{cedear['02. description']}</td>
-              <td>{cedear['03. conversion ratio']}</td>
+              <td className='columna-ocultable'>{cedear['02. description']}</td>
+              <td className='columna-ocultable'>{cedear['03. conversion ratio']}</td>
               <td>${parseFloat(getCurrentPrice(cedear['01. symbol'])).toFixed(2)}</td>
-              <td>{cedear['05. commission']}</td>
-              <td>${cedear['06. total cost']}</td>
+              <td className='columna-ocultable'>{cedear['05. commission']}</td>
+              <td className='columna-ocultable'>${cedear['06. total cost']}</td>
               <td>
                 <button className='comprarCedearsBtn' onClick={() => handleBuyClick(cedear)}><AddIcon />Comprar</button>
               </td>
@@ -478,18 +478,18 @@ const CEDEARTable = () => {
               <Tooltip title="Basicamente el 'Apodo' del cedear">
                   <InfoIcon />
                 </Tooltip>
-                CEDEAR
+                Símbolo
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
-                <Tooltip title="Esta es la cantidad de CEDEARs que compraste">
+                <Tooltip title="Esta es la cantidad de CEDEARs que compraste" >
                   <InfoIcon />
                 </Tooltip>
                 Cantidad
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
                 <Tooltip title="El precio al que en su momento compraste el CEDEAR">
                   <InfoIcon />
@@ -497,7 +497,7 @@ const CEDEARTable = () => {
                 Precio de compra
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
                 <Tooltip title="El precio actual por unidad del CEDEAR">
                   <InfoIcon />
@@ -505,9 +505,9 @@ const CEDEARTable = () => {
                 Precio actual
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
-                <Tooltip title="El rendimiento actual que tuvo la empresa a la que pertenece el CEDEAR ">
+                <Tooltip title="El rendimiento actual que tuvo la empresa a la que pertenece el CEDEAR " >
                   <InfoIcon />
                 </Tooltip>
                 Rendimiento %
@@ -518,7 +518,7 @@ const CEDEARTable = () => {
                 <Tooltip title="El rendimiento total de tus CEDEARs desde su compra hasta ahora">
                   <InfoIcon />
                 </Tooltip>
-                Rendimiento Total
+                Rto.Total
               </div>
             </TableCell>
             <TableCell style={{ textAlign: 'center' }}>
@@ -535,10 +535,10 @@ const CEDEARTable = () => {
           {paginatedPortfolio.filter(item => item.name !== 'Ninguno').map((item, index) => (
             <tr key={index}>
               <td>{item.name}</td>
-              <td>{item.quantity}</td>
-              <td>${parseFloat(item.price).toFixed(2)}</td>
-              <td>${parseFloat(getCurrentPrice(item.name)).toFixed(2)}</td>
-              <td style={{ color: getCurrentProfit(item.name) >= 0 ? 'green' : 'red' }}>
+              <td className='columna-ocultable'>{item.quantity}</td>
+              <td className='columna-ocultable'>${parseFloat(item.price).toFixed(2)}</td>
+              <td className='columna-ocultable'>${parseFloat(getCurrentPrice(item.name)).toFixed(2)}</td>
+              <td className='columna-ocultable' style={{ color: getCurrentProfit(item.name) >= 0 ? 'green' : 'red' }}>
                 {getCurrentProfit(item.name) >= 0 ? `+${parseFloat(getCurrentProfit(item.name)).toFixed(2)}%` : `${parseFloat(getCurrentProfit(item.name)).toFixed(2)}%`}
               </td>
               <td style={{ color: (getCurrentPrice(item.name) - item.price) >= 0 ? 'green' : 'red' }}>
@@ -612,7 +612,7 @@ const CEDEARTable = () => {
                 Simbolo
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
                 <Tooltip title="El nombre de la empresa a la que pertenece el CEDEAR">
                   <InfoIcon />
@@ -620,7 +620,7 @@ const CEDEARTable = () => {
                 Descripcion
               </div>
             </TableCell>
-            <TableCell style={{ textAlign: 'center' }}>
+            <TableCell style={{ textAlign: 'center' }} className='columna-ocultable'>
               <div className="header-icon-text">
                 <Tooltip title="Fecha y hora de la transaccion">
                   <InfoIcon />
@@ -665,8 +665,8 @@ const CEDEARTable = () => {
                 <tr key={index} style={{ backgroundColor: rowColor }}>
                   <td>{transaction.accion}</td>
                   <td>{transaction.simbolo}</td>
-                  <td>{transaction.descripcion}</td>
-                  <td>{transaction.fechaHora}</td>
+                  <td className='columna-ocultable'>{transaction.descripcion}</td>
+                  <td className='columna-ocultable'>{transaction.fechaHora}</td>
                   <td>${parseFloat(transaction.montoTotal).toFixed(2)}</td>
                 </tr>
               );
