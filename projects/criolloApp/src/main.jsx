@@ -8,6 +8,7 @@ import InversionesComponent from './components/Inversiones';
 import PracticaCedears from './components/PracticaCedears';
 import Practica from './components/Practica';
 import Tutoriales from './components/Tutoriales';
+import Comunidad from './components/Comunidad';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -23,7 +24,7 @@ root.render(
         <Route path="/practicas" element={<InversionesComponent/>} />
         <Route path="/cedears" element={<PracticaCedears />} />
         <Route path="/tutoriales" element={<Tutoriales />} />
-        {/* <Route path="*" element={<h1>404: Página no encontrada</h1>} /> */}
+        <Route path="/comunidad" element={<Comunidad />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>
