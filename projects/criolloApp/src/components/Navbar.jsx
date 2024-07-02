@@ -20,6 +20,7 @@ import Popover from "@mui/material/Popover";
 import "../../src/App.css";
 import logo from "../assets/CRIOLL.png";
 import avatarUrl from "../assets/avatar.jpg";
+import { colors } from "@mui/material";
 
 const drawerWidth = 240;
 // const navItems = ['<Experiencia />', '<DevTools />', '<Portfolio />', '<Contacto />', <ControlledSwitches />];
@@ -58,10 +59,49 @@ export default function DrawerAppBar({ window, currentSection }) {
 		<Box
 			onClick={handleDrawerToggle}
 			sx={{
-				textAlign: "center",
-				background:
-					"linear-gradient(90deg, #0F0F0F 0.02%, rgba(0, 71, 255, 0.51) 99.99%)",
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "flex-start",
+				height: "100%",
+				backgroundColor: "#077647",
+				color: "#FFF",
+				fontFamily: "Inter",
+				fontSize: "1rem",
+				gap: "2.5rem",
+
+				".navTextsHamburguer": {
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					justifyContent: "center",
+					gap: "2rem",
+					width: "100%",
+					padding: "0",
+					color: "#FFF !important",
+				},
+
+				a: {
+					textDecoration: "none",
+					color: "#FFF",
+					fontSize: "1.8rem",
+					fontWeight: "bolder",
+					"&:hover": {
+						color: "#FFF",
+						fontWeight: "bold",
+						fontSize: "1.2rem",
+					},
+
+					"&.active": {
+						color: "#FFF",
+						fontWeight: "bold",
+						fontSize: "1.2rem",
+
+					},
+				},
+
 			}}
+			
 		>
 			<Typography variant="h6" sx={{ my: 2, color: "#FFF" }}>
 				CRIOLLO
