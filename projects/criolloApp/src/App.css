@@ -2019,4 +2019,11 @@ button:disabled {
 	.my-chart-container{
 		display: none;
 	  }
+	  .modal-comprar{
+		width: 100%;
+		height: 100%;
+	  }
+	  .modalComprar-content{
+		width: 90%;
+	  }
 }
