@@ -108,7 +108,7 @@ export default function DrawerAppBar({ window, currentSection }) {
 			</Typography>
 			<Divider />
 			<List className="navTextsHamburguer">
-				<a href="#/tutoriales">{IniText}</a>
+				<a href="#/inversiones">{IniText}</a>
 				<a href="#/practicas">{ExpText}</a>
 				<a href="#/novedades">{DevText}</a>
 				<a href="#/comunidad">{PortText}</a>
