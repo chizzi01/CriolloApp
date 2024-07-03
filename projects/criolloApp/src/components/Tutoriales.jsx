@@ -60,7 +60,7 @@ export default function Tutoriales() {
 							<div className="listaCedears-card">
 								<p>
 									<strong>CEDEAR</strong> significa{" "}
-									<strong>CE</strong>rificados de{" "}
+									<strong>CE</strong>rtificados de{" "}
 									<strong>DE</strong>pósito{" "}
 									<strong>AR</strong>gentinos
 								</p>
